@@ -33,18 +33,26 @@
 - **Función principal:** Listar proyectos, deployments, logs, y desplegar aplicaciones (ideal para las generadas por funcional-webapp-creator).
 - **Triggers:** vercel specialist, deploy to vercel, vercel deploy, integrar vercel
 
-### 5. rigorous-web-aportante (NUEVO)
+### 5. rigorous-web-aportante
 - **Tipo:** Aportante de conocimiento externo riguroso
-- **Estado:** Recién creado
+- **Estado:** Operativo
 - **Ubicación:** `/home/workdir/.grok/skills/rigorous-web-aportante/`
-- **Función principal:** Investigar web (repos, foros, papers) con criterios extremadamente rigurosos. Extrae solo fragmentos de alta calidad y alineados que realmente mejoren el ecosistema. Nunca inyecta automáticamente.
+- **Función principal:** Investigar web (repos, foros, papers) con criterios extremadamente rigurosos. Extrae solo fragmentos de alta calidad y alineados que realmente mejoren el ecosistema.
 - **Triggers:** rigorous web aportante, aportante investigacion, investigar gap, enriquecer con fuentes externas
+
+### 6. tuc-builder (NUEVO)
+- **Tipo:** Constructor y orquestrador del proyecto TUC
+- **Estado:** Recién creado
+- **Ubicación:** `/home/workdir/.grok/skills/tuc-builder/`
+- **Función principal:** Ensamblar, ordenar, retroalimentar críticamente, estudiar y mantener el estado completo del proyecto TUC. Identifica gaps, propone validaciones (E3, E4, multi-dominio) y asegura coherencia y rigor.
+- **Triggers:** tuc builder, construir TUC, orquestar TUC, validar TUC, paper TUC, gaps TUC
 
 ## Skills en Evolución / Próximos Candidatos
 
 - Mejoras en flujo de deployment inteligente (GitHub Pages vs Vercel)
 - Fortalecimiento de memoria persistente multi-conversación
 - Automatización de revisiones periódicas del ecosistema
+- Extensión de TUC a validación multi-dominio (EEG prioritario)
 
 ## Principios Rectores
 - Soberanía del usuario
@@ -54,6 +62,7 @@
 - Versionado central en este repo
 - Deployment profesional (GitHub Pages + Vercel)
 - Investigación externa solo con rigor extremo
+- Construcción de TUC con falsabilidad y reproducibilidad
 
 ## Estructura del Repo
 - Cada skill tiene su propia carpeta con `SKILL.md`, `references/` y `assets/`
