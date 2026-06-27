@@ -26,17 +26,24 @@
 - **Función principal:** Gestionar el manifiesto, detectar gaps, recomendar combinaciones de skills, mantener coherencia del sistema y proponer/crear nuevos skills de forma proactiva.
 - **Triggers:** ecosistema orchestrator, orquestrador de skills, gestionar ecosistema de skills, evolución de skills
 
-### 4. vercel-specialist (NUEVO)
+### 4. vercel-specialist
 - **Tipo:** Especialista en deployment y gestión con Vercel
-- **Estado:** Recién creado y operativo
+- **Estado:** Operativo
 - **Ubicación:** `/home/workdir/.grok/skills/vercel-specialist/`
-- **Función principal:** Listar proyectos, deployments, logs, y desplegar aplicaciones (ideal para las generadas por funcional-webapp-creator). Integra fácilmente con GitHub y el ecosistema.
+- **Función principal:** Listar proyectos, deployments, logs, y desplegar aplicaciones (ideal para las generadas por funcional-webapp-creator).
 - **Triggers:** vercel specialist, deploy to vercel, vercel deploy, integrar vercel
+
+### 5. rigorous-web-aportante (NUEVO)
+- **Tipo:** Aportante de conocimiento externo riguroso
+- **Estado:** Recién creado
+- **Ubicación:** `/home/workdir/.grok/skills/rigorous-web-aportante/`
+- **Función principal:** Investigar web (repos, foros, papers) con criterios extremadamente rigurosos. Extrae solo fragmentos de alta calidad y alineados que realmente mejoren el ecosistema. Nunca inyecta automáticamente.
+- **Triggers:** rigorous web aportante, aportante investigacion, investigar gap, enriquecer con fuentes externas
 
 ## Skills en Evolución / Próximos Candidatos
 
-- RadarUsados (app desplegada — primer caso de uso real)
-- Mejoras en persistencia de conocimiento multi-conversación
+- Mejoras en flujo de deployment inteligente (GitHub Pages vs Vercel)
+- Fortalecimiento de memoria persistente multi-conversación
 - Automatización de revisiones periódicas del ecosistema
 
 ## Principios Rectores
@@ -46,6 +53,7 @@
 - Coherencia TUC / resonancia
 - Versionado central en este repo
 - Deployment profesional (GitHub Pages + Vercel)
+- Investigación externa solo con rigor extremo
 
 ## Estructura del Repo
 - Cada skill tiene su propia carpeta con `SKILL.md`, `references/` y `assets/`
