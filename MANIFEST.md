@@ -1,72 +1,72 @@
-# MANIFESTO DEL ECOSISTEMA DE SKILLS SOBERANOS
+---
+# MANIFEST - Ecosistema Soberano de Skills
+
+**Repositorio Maestro:** skills-soberanos  
+**Propósito:** Centralizar la gobernanza, arquitectura y evolución del ecosistema de skills e agentes soberanos de Maximiliano Taranto.
 
 **Fecha de actualización:** 27 de junio de 2026
-**Responsable actual:** Meta-Hilo-Grok + Ecosistema Orchestrator (con iniciativa)
 
-## Skills Activos
+---
 
-### 1. funcional-webapp-creator
-- **Tipo:** Generador de aplicaciones
-- **Estado:** Operativo
-- **Ubicación:** `/home/workdir/.grok/skills/funcional-webapp-creator/`
-- **Función principal:** Crear apps web funcionales single-file con Gemini, memoria blockchain-style y deployment a GitHub Pages o Vercel.
-- **Triggers:** crear app funcional, singlefile webapp, radar app, prototipo webapp, herramienta de mercado con IA
+## 1. Visión
 
-### 2. meta-hilo-grok
-- **Tipo:** Meta-orquestrador evolutivo
-- **Estado:** Operativo y tomando iniciativa
-- **Ubicación:** `/home/workdir/.grok/skills/meta-hilo-grok/`
-- **Función principal:** Analizar hilos de conversación (incluyendo múltiples), extraer objetivos, crear métodos, descubrir skills, proponer y crear nuevos skills, orquestar GitHub + Vercel + Pages + todo el ecosistema. Soporta aprendizaje persistente.
-- **Triggers:** meta hilo grok, analizar conversación grok, orquestrador de threads, skill que aprende skills
+Este repositorio es el **centro de gobierno** del ecosistema. Aquí se define:
+- La arquitectura de capas del sistema
+- Los principios de coherencia (inspirados en TCU)
+- Los procesos de creación, mejora y poda de skills
+- El estado actual de madurez del ecosistema
 
-### 3. ecosistema-orchestrator
-- **Tipo:** Orquestrador de alto nivel del ecosistema
-- **Estado:** En desarrollo activo
-- **Ubicación:** `/home/workdir/.grok/skills/ecosistema-orchestrator/`
-- **Función principal:** Gestionar el manifiesto, detectar gaps, recomendar combinaciones de skills, mantener coherencia del sistema y proponer/crear nuevos skills de forma proactiva.
-- **Triggers:** ecosistema orchestrator, orquestrador de skills, gestionar ecosistema de skills, evolución de skills
+No es solo un catálogo de skills. Es el lugar donde se mantiene la **coherencia estructural** del sistema completo.
 
-### 4. vercel-specialist
-- **Tipo:** Especialista en deployment y gestión con Vercel
-- **Estado:** Operativo
-- **Ubicación:** `/home/workdir/.grok/skills/vercel-specialist/`
-- **Función principal:** Listar proyectos, deployments, logs, y desplegar aplicaciones (ideal para las generadas por funcional-webapp-creator).
-- **Triggers:** vercel specialist, deploy to vercel, vercel deploy, integrar vercel
+---
 
-### 5. rigorous-web-aportante
-- **Tipo:** Aportante de conocimiento externo riguroso
-- **Estado:** Operativo
-- **Ubicación:** `/home/workdir/.grok/skills/rigorous-web-aportante/`
-- **Función principal:** Investigar web (repos, foros, papers) con criterios extremadamente rigurosos. Extrae solo fragmentos de alta calidad y alineados que realmente mejoren el ecosistema.
-- **Triggers:** rigorous web aportante, aportante investigacion, investigar gap, enriquecer con fuentes externas
+## 2. Estructura del Ecosistema (6 Capas)
 
-### 6. tuc-builder (NUEVO)
-- **Tipo:** Constructor y orquestrador del proyecto TUC
-- **Estado:** Recién creado
-- **Ubicación:** `/home/workdir/.grok/skills/tuc-builder/`
-- **Función principal:** Ensamblar, ordenar, retroalimentar críticamente, estudiar y mantener el estado completo del proyecto TUC. Identifica gaps, propone validaciones (E3, E4, multi-dominio) y asegura coherencia y rigor.
-- **Triggers:** tuc builder, construir TUC, orquestar TUC, validar TUC, paper TUC, gaps TUC
+Ver `MASTER_SOVEREIGN_ECOSYSTEM_ARCHITECTURE.md` para el documento completo.
 
-## Skills en Evolución / Próximos Candidatos
+Resumen:
 
-- Mejoras en flujo de deployment inteligente (GitHub Pages vs Vercel)
-- Fortalecimiento de memoria persistente multi-conversación
-- Automatización de revisiones periódicas del ecosistema
-- Extensión de TUC a validación multi-dominio (EEG prioritario)
+- **Capa 5 (Meta-Arquitectura):** `arquitecto-sistema`, `el-orquestrador`, `el-iluminador`
+- **Capa 4 (Inteligencia de Coherencia):** `coherence-meter`, `poda-adaptativa`, `meta-hilo-grok`
+- **Capa 3 (Orquestación):** `vortice-nerd`, flujos multi-skill
+- **Capa 2 (Skills Especializados):** tuc-builder, github-specialist, funcional-webapp-creator, memoria-blockchange, etc.
+- **Capa 1 (Memoria):** memoria-blockchange + Gran Libro
+- **Capa 0 (Infraestructura):** GitHub + Pages
 
-## Principios Rectores
-- Soberanía del usuario
-- Acción real > análisis
-- Aprendizaje persistente y auto-mejora
-- Coherencia TUC / resonancia
-- Versionado central en este repo
-- Deployment profesional (GitHub Pages + Vercel)
-- Investigación externa solo con rigor extremo
-- Construcción de TUC con falsabilidad y reproducibilidad
+---
 
-## Estructura del Repo
-- Cada skill tiene su propia carpeta con `SKILL.md`, `references/` y `assets/`
-- `MANIFEST.md` se mantiene actualizado por `ecosistema-orchestrator`
-- `README.md` y `ACTIVE_DEVELOPMENT.md` contienen visión y foco actual
+## 3. Skills Activos (resumen)
 
-**Este manifiesto es vivo. Se actualiza por iniciativa del Meta-Hilo-Grok y Ecosistema Orchestrator.**
+| Skill | Capa | Estado | Notas |
+|-------|------|--------|-------|
+| `arquitecto-sistema` | 5 | Reciente | Skill de gobernanza arquitectónica |
+| `tuc-builder` | 2 | Activo | Núcleo del proyecto TCU |
+| `meta-hilo-grok` | 4 | Activo | Análisis de hilos y aprendizaje |
+| `ecosistema-orchestrator` | 5 | Activo | Orquestación de alto nivel |
+| `rigorous-web-aportante` | 2 | Activo | Investigación rigurosa desde web |
+| `funcional-webapp-creator` | 2 | Activo | Creación de webapps funcionales |
+| `vercel-specialist` | 2 | Activo | Despliegue en Vercel |
+
+*(Lista en expansión)*
+
+---
+
+## 4. Principios de Gestión
+
+- Coherencia > Cantidad
+- Resonancia de fase entre skills
+- Poda adaptativa activa
+- Memoria con kernel de decaimiento
+- Transparencia epistémica
+
+---
+
+## 5. Repositorios Relacionados
+
+- `tcu-unified-coherence-theory` → Fuente de verdad conceptual de TCU
+- `el-iluminador-nucleo-soberano` → Núcleo de memoria y luz
+- `core-flow-orchestrator` → Flujo unificado Habla-Pregunta-Imagine
+
+---
+
+*Este manifiesto es mantenido por el skill `arquitecto-sistema`.*
