@@ -1,0 +1,24 @@
+# Dependencias del Ecosistema Soberano
+
+# Core LLM & Language
+litellm>=1.40.0              # Multi-modelo LLM abstraction
+langchain-core>=0.1.0        # LangChain core utilities
+python-dotenv>=1.0.0         # Environment variables
+
+# GitHub Integration
+PyGithub>=2.3.0              # GitHub API client
+
+# Data Processing
+numpy>=1.26.0                # Numerical computing
+pandas>=2.1.0                # Data analysis (futuro)
+
+# Testing & Development
+pytest>=7.4.0                # Testing framework
+pytest-cov>=4.1.0            # Coverage reporting
+
+# Data Validation
+pydantic>=2.0.0              # Schema validation
+
+# Utilities
+requests>=2.31.0             # HTTP requests
+python-dateutil>=2.8.0       # Date utilities
