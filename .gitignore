@@ -1,0 +1,127 @@
+# Ecosistema Soberano — .gitignore
+
+# ============================================================================
+# ENVIRONMENT & SECRETS
+# ============================================================================
+.env                          # Configuración local (NUNCA commitear)
+.env.local                    # Override local
+.env.production.local         # Producción local
+*.pem                         # Certificados
+*.key                         # Claves privadas
+*credentials*                 # Archivos con credenciales
+
+# ============================================================================
+# PYTHON
+# ============================================================================
+__pycache__/                  # Bytecode compilado
+*.py[cod]                     # Python compiled files
+*$py.class                    # Variante de .pyc
+*.so                          # Extensiones compiladas
+*.egg                         # Distribuciones
+*.egg-info/                   # Metadata de egg
+dist/                         # Build distribution
+build/                        # Build output
+*.whl                         # Wheels
+pip-log.txt                   # Logs de pip
+pip-delete-this-directory.txt
+
+# ============================================================================
+# VIRTUAL ENVIRONMENTS
+# ============================================================================
+venv/                         # Virtual env (principal)
+env/                          # Variante
+ENV/                          # Variante Windows
+.venv                         # Variante punto
+
+# ============================================================================
+# IDE & EDITORS
+# ============================================================================
+.vscode/                      # Visual Studio Code
+.idea/                        # JetBrains IDEs
+*.swp                         # Vim swap
+*.swo                         # Vim backup
+*~                            # Backup files
+.DS_Store                     # macOS
+Thumbs.db                     # Windows
+
+# ============================================================================
+# TESTING & COVERAGE
+# ============================================================================
+.pytest_cache/                # Pytest cache
+.coverage                     # Coverage reports
+htmlcov/                      # Coverage HTML
+.tox/                         # Tox
+
+# ============================================================================
+# LOGS & REPORTS
+# ============================================================================
+*.log                         # Log files
+logs/                         # Log directory
+pulse_report_*.json           # Reportes de pulse locales
+local_pulse_report.json       # Reporte local
+*.tmp                         # Archivos temporales
+
+# ============================================================================
+# DATA FILES (LOCAL TESTING ONLY)
+# ============================================================================
+test_data/                    # Datos de testing
+local_memoria/                # Memoria local para testing
+*.db                          # SQLite databases (si se usan)
+*.sqlite                      # SQLite variante
+
+# ============================================================================
+# LOCK FILES (Versionear, pero marcar)
+# ============================================================================
+# NO IGNORAR: poetry.lock, package-lock.json, etc
+# Estos se comitean para reproducibilidad
+
+# ============================================================================
+# TEMPORARY DIRECTORIES
+# ============================================================================
+tmp/                          # Temporal files
+temp/                         # Temporal files
+.cache/                       # Cache
+.hypothesis/                  # Hypothesis
+.scrapy/                      # Scrapy
+
+# ============================================================================
+# COMPILED FILES
+# ============================================================================
+*.o                           # Object files
+*.a                           # Archive files
+*.so.*                        # Shared objects
+
+# ============================================================================
+# LARGE FILES (Revisar antes de commitear)
+# ============================================================================
+# Los siguientes directorios PUEDEN crecer mucho
+# Revisar tamaño antes de cada commit
+# memoria/   ← IMPORTANTE: puede crecer
+# ui/data/   ← IMPORTANTE: puede tener históricos largos
+
+# ============================================================================
+# IDE-SPECIFIC
+# ============================================================================
+.pylintrc                     # Pylint config
+.flake8                       # Flake8 config
+setup.cfg                     # Setup config
+
+# ============================================================================
+# OS-SPECIFIC
+# ============================================================================
+.AppleDouble                  # macOS
+.LSOverride                   # macOS
+._*                           # macOS
+.Spotlight-V100               # macOS
+.Trashes                      # macOS
+ehthumbs.db                   # Windows
+Desktop.ini                   # Windows
+
+# ============================================================================
+# BUILD ARTIFACTS
+# ============================================================================
+*.dist-info/
+*.egg-info/
+.installed.cfg
+*.tar.gz
+*.zip
