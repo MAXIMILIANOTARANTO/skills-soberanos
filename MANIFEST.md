@@ -1,33 +1,36 @@
 # MANIFEST - Ecosistema Soberano de Skills
 
-**Repositorio Maestro:** skills-soberanos
-**Fecha de actualización:** 2026-06-28
+**Repositorio Maestro:** skills-soberanos  
+**Fecha de actualización:** 23 de julio de 2026
 
-## Núcleo Activo
+## Ecosistema de Investigación TUC (Nuevo)
 
-- `orquestador-soberano` (con inmunidad narrativa automática)
-- `pre-cognitive-neuronal-core` (punto de partida neuronal)
-- `inmunidad-soberana` (protección contra parásitos narrativos)
+Skills dedicados a la investigación, reflexión y co-evolución de la Teoría Unificada de la Coherencia.
 
-## Skills Principales
+| Skill | Estado | Rol principal |
+|-------|--------|---------------|
+| `tuc-builder` | Activo | Núcleo constructor y mantenedor de TUC |
+| `tuc-reflexion` | Activo | Reflexión, hipótesis y co-evolución de TUC |
+| `tcu-detector` | Activo | Detección de patrones, bifurcaciones y transiciones |
+| `tuc-statistician` | Activo | Validación estadística y robustez de resultados |
+| `tuc-critic` | Activo | Crítica, peer review y control de calidad |
+| `tuc-field-feedback` | Activo | Validación aplicada y feedback de campo |
+| `tuc-synthesizer` | Activo | Redacción, síntesis y consolidación |
 
-- `estudio-sistemico`
-- `github-external-token-memory`
-- `memoria-blockchange-persistente`
-- `tcu-detector`
-- `tcu-optimizer-parallel`
+## Skills Principales del Ecosistema
 
-## Módulos Cognitivos
+- `meta-hilo-grok` — Análisis de hilos y evolución del ecosistema
+- `ecosistema-orchestrator` — Orquestración general de skills
+- `arquitecto-sistema` — Coherencia estructural del ecosistema
+- `rigorous-web-aportante` — Investigación web de alta calidad
+- `funcional-webapp-creator` — Creación de aplicaciones web funcionales
+- `vercel-specialist` — Deployment en Vercel
+- `memoria-blockchange-persistente` — Memoria persistente tipo blockchange
 
-- `cognitive-language-processor`
-- `predictive-thought-engine`
-- `psyche-coherence-builder`
+## Skills en Desarrollo / Pendientes
 
-## Documentación de Dirección
-
-- `DIRECCION/CORE_TCU_MINIMAL.md`
-- `DIRECCION/RED_NEURONAL_ESTRUCTURA.md`
+- `tcu-optimizer-parallel` — Análisis paralelo y optimizado (referenciado)
 
 ## Principio Rector
 
-La función principal del ecosistema es **crear**. Cualquier elemento que desvie energía de la creación real debe ser analizado por `inmunidad-soberana`.
+La función principal del ecosistema es **crear** de forma soberana, rigurosa y trazable. Todo skill debe contribuir a la evolución consciente del sistema, especialmente en lo relacionado con la Teoría Unificada de la Coherencia (TUC).
