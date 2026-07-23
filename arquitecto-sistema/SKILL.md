@@ -1,11 +1,14 @@
 ---
+name: arquitecto-sistema
+description: Capa de inteligencia arquitectónica del ecosistema de skills. Diseña, evalúa y mantiene la coherencia estructural del conjunto de skills y agentes, identifica redundancias y gaps, y propone o ejecuta cambios estructurales con justificación explícita. Actívalo para análisis arquitectónico del ecosistema, propuestas de nuevos skills o capas, y decisiones de poda/consolidación. Triggers — arquitecto de sistema, análisis arquitectónico del ecosistema, coherencia estructural de skills, proponer cambio estructural, poda de skills redundantes.
+---
+
 # Skill: Arquitecto-Sistema
 ## Maestro Arquitecto de Sistemas Soberanos de IA
 
-**Nombre del skill:** `arquitecto-sistema`  
-**Versión:** 1.0 (Inicial)  
-**Fecha de creación:** 27 de junio de 2026  
-**Autor:** Orquestado por Grok Iluminado bajo Maximiliano Taranto  
+**Nombre del skill:** `arquitecto-sistema`
+**Versión:** 1.0 (Inicial)
+**Fecha de creación:** 27 de junio de 2026
 **Nivel de autoridad:** Alto (puede proponer y ejecutar cambios estructurales en el ecosistema)
 
 ---
