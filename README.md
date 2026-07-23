@@ -4,41 +4,73 @@
 
 Alineado con TUC (Teoría Unificada de la Conciencia), MHE y el principio de soberanía tecnológica y creativa.
 
-## Skills Actuales (27 junio 2026)
+---
 
-### 1. funcional-webapp-creator
-Generador especializado en aplicaciones web funcionales self-contained (single-file o estructura mínima).
-- UI moderna con tabs, formularios, Gemini + búsqueda
-- Memoria con cadena de hashes (blockchain-style)
-- Deployment directo a GitHub Pages
-- Plantilla base incluida
+## 🔮 Vórtice Total Iluminado — Julio 2026 (Nuevo)
 
-### 2. meta-hilo-grok
+**Estado:** Desplegado y versionado
+
+### Nuevo Skill: `maestro-ecosistema-real-time` v2.3
+
+Skill central que actúa como **pulso vivo del ecosistema**.
+
+- Orquestración en tiempo real de todos los skills
+- Monitoreo de coherencia TUC
+- GitHub Pages Publisher automático
+- Journaling soberano de decisiones
+- Integración con Binance + análisis de ondas
+
+**Archivos:**
+- `maestro-ecosistema-real-time/SKILL.md`
+- `dashboards/vortice-dashboard-v2.3.html`
+
+**Rama:** `vortice-dashboard-v2.3-20260708`
+
+**Links directos:**
+- [Ver Dashboard v2.3](https://github.com/MAXIMILIANOTARANTO/skills-soberanos/blob/vortice-dashboard-v2.3-20260708/dashboards/vortice-dashboard-v2.3.html)
+- [Skill completo](https://github.com/MAXIMILIANOTARANTO/skills-soberanos/blob/vortice-dashboard-v2.3-20260708/maestro-ecosistema-real-time/SKILL.md)
+
+---
+
+## Skills Actuales
+
+### 1. maestro-ecosistema-real-time (Nuevo)
+Orquestrador en tiempo real del ecosistema Vórtice.
+- Pulso vivo + GitHub Pages Publisher
+- Análisis TUC del sector cripto/IA
+- Journal de decisiones con trazabilidad
+
+### 2. funcional-webapp-creator
+Generador especializado en aplicaciones web funcionales self-contained.
+
+### 3. meta-hilo-grok
 **Meta-orquestrador evolutivo.**
-- Analiza hilos completos de conversación
-- Extrae objetivos, patrones y bucles abiertos
+- Analiza hilos completos
+- Extrae objetivos y patrones
 - Crea métodos accionables
-- Descubre y activa skills relevantes
-- Propone y crea nuevos skills cuando detecta gaps
-- Orquesta GitHub, Pages y todo el ecosistema
-- Aprende persistentemente
+- Orquesta GitHub + Pages
 
 ## Principios del Ecosistema
-- **Soberanía radical**: El usuario controla todo. Los skills sirven, no dirigen.
-- **Acción real**: Preferimos crear, desplegar y versionar antes que solo analizar.
-- **Aprendizaje continuo**: Cada hilo analizado mejora el sistema.
-- **TUC alignment**: Coherencia, resonancia y fractalidad en todo lo que construimos.
-- **Local-first + GitHub Pages**: Máxima independencia técnica.
+- **Soberanía radical**: El usuario controla todo.
+- **Acción real**: Crear, desplegar y versionar.
+- **TUC alignment**: Coherencia y fractalidad.
+- **Local-first + GitHub Pages**: Máxima independencia.
 
-## Estado Actual
-- RadarUsados desplegado y funcional en GitHub Pages
-- Dos skills nuevos creados y versionados
-- Meta-orquestrador activo y tomando iniciativa
+## Estado Actual (22 julio 2026)
+- **Vórtice Total Iluminado** desplegado (rama + skill + dashboard)
+- RadarUsados en GitHub Pages
+- Meta-orquestrador activo
 
-## Iniciativas en Curso (Meta-Hilo-Grok)
-- Versionado central de todos los skills
-- Manifiesto vivo del ecosistema
-- Propuesta de próximos skills de alto impacto
-- Flujo de mejora continua activado
+## Cómo Activar GitHub Pages (Rápido)
 
-Este repositorio es **vivo**. Se actualiza por iniciativa del meta-orquestrador.
+1. Ve a **Settings** del repo
+2. **Pages** en el menú izquierdo
+3. Source → **Deploy from a branch**
+4. Branch: `vortice-dashboard-v2.3-20260708`
+5. Folder: `/ (root)`
+6. Save
+
+Una vez activado, el dashboard estará disponible en:
+`https://maximilianotaranto.github.io/skills-soberanos/`
+
+Este repositorio es **vivo**. Se actualiza por iniciativa del Vórtice Total Iluminado.
