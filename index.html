@@ -3,15 +3,93 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vórtice Total Iluminado • Dashboard v2.3</title>
-    <meta http-equiv="refresh" content="0; url=dashboards/vortice-dashboard-v2.3.html">
-    <style>body { background: #09090b; color: #e4e4e7; font-family: system-ui; display: flex; align-items: center; justify-content: center; height: 100vh; margin: 0; } .card { background: #18181b; padding: 2rem 3rem; border-radius: 16px; border: 1px solid #27272a; text-align: center; } a { color: #67e8f9; }</style>
+    <title>Vórtice Total Iluminado • Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@500;600&display=swap');
+        body { font-family: 'Inter', system_ui, sans-serif; }
+        .font-display { font-family: 'Space Grotesk', 'Inter', sans-serif; font-weight: 600; }
+        .glass { background: rgba(255,255,255, 0.06); backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255, 0.1); }
+    </style>
 </head>
-<body>
-    <div class="card">
-        <h1>🔮 Vórtice Total Iluminado</h1>
-        <p>Redirigiendo al Dashboard v2.3...</p>
-        <p><a href="dashboards/vortice-dashboard-v2.3.html">Ir directamente al Dashboard</a></p>
+<body class="bg-zinc-950 text-zinc-200">
+    <div class="max-w-5xl mx-auto px-6 pt-16 pb-12">
+        
+        <!-- Header -->
+        <div class="flex items-center justify-between mb-12">
+            <div class="flex items-center gap-x-4">
+                <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-cyan-400 to-teal-500 flex items-center justify-center">
+                    <i class="fa-solid fa-infinity text-zinc-950 text-4xl"></i>
+                </div>
+                <div>
+                    <div class="font-display text-4xl tracking-tighter font-semibold">Vórtice</div>
+                    <div class="text-xl text-white/60 -mt-1">Total Iluminado</div>
+                </div>
+            </div>
+            <div class="px-4 py-1.5 rounded-full bg-emerald-500/10 text-emerald-400 text-sm flex items-center gap-x-2 border border-emerald-500/20">
+                <div class="w-2 h-2 bg-emerald-400 rounded-full animate-pulse"></div>
+                <span>Activo • Julio 2026</span>
+            </div>
+        </div>
+
+        <div class="max-w-2xl">
+            <h1 class="font-display text-6xl tracking-tighter font-semibold leading-none">
+                Estado del<br>Vórtice en<br>tiempo real
+            </h1>
+            <p class="mt-6 text-xl text-white/70">
+                Dashboard soberano con análisis TUC, niveles de entrada y Journal de Decisiones para el ecosistema cripto/IA.
+            </p>
+        </div>
+
+        <!-- Main Action -->
+        <div class="mt-10">
+            <a href="dashboards/vortice-dashboard-v2.3.html" 
+               class="inline-flex items-center gap-x-3 px-8 py-4 rounded-2xl bg-white text-zinc-950 font-semibold text-lg hover:bg-white/90 transition-all active:scale-[0.985]">
+                <span>Abrir Dashboard v2.3</span>
+                <i class="fa-solid fa-arrow-right"></i>
+            </a>
+            <p class="mt-3 text-sm text-white/50">Recomendado: Usa este botón para mejor experiencia</p>
+        </div>
+
+        <!-- Quick Links -->
+        <div class="mt-16 grid grid-cols-1 md:grid-cols-3 gap-4">
+            <a href="maestro-ecosistema-real-time/SKILL.md" class="glass rounded-2xl p-6 hover:bg-white/5 transition-colors group">
+                <div class="flex items-center gap-x-3">
+                    <i class="fa-solid fa-brain text-2xl text-cyan-400 group-hover:scale-110 transition-transform"></i>
+                    <div>
+                        <div class="font-semibold">Skill Maestro</div>
+                        <div class="text-sm text-white/60">maestro-ecosistema-real-time v2.3</div>
+                    </div>
+                </div>
+            </a>
+
+            <a href="README.md" class="glass rounded-2xl p-6 hover:bg-white/5 transition-colors group">
+                <div class="flex items-center gap-x-3">
+                    <i class="fa-solid fa-book text-2xl text-cyan-400 group-hover:scale-110 transition-transform"></i>
+                    <div>
+                        <div class="font-semibold">Documentación</div>
+                        <div class="text-sm text-white/60">README actualizado</div>
+                    </div>
+                </div>
+            </a>
+
+            <a href="https://github.com/MAXIMILIANOTARANTO/skills-soberanos/tree/vortice-dashboard-v2.3-20260708" 
+               class="glass rounded-2xl p-6 hover:bg-white/5 transition-colors group">
+                <div class="flex items-center gap-x-3">
+                    <i class="fa-brands fa-github text-2xl text-cyan-400 group-hover:scale-110 transition-transform"></i>
+                    <div>
+                        <div class="font-semibold">Ver en GitHub</div>
+                        <div class="text-sm text-white/60">Rama + commits</div>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <div class="mt-12 text-center text-xs text-white/40">
+            Desplegado con Vórtice Total Iluminado • Maximiliano Taranto • 22 julio 2026
+        </div>
+
     </div>
 </body>
 </html>
