@@ -8,6 +8,8 @@ Alineado con TUC (Teoría Unificada de la Conciencia), MHE y el principio de sob
 
 El inventario completo y actualizado de skills (13 en total), su estado y propósito, vive en [`MANIFEST.md`](MANIFEST.md) — esa es la fuente de verdad, no esta lista.
 
+Cada skill tiene una URL directa (`raw.githubusercontent.com`) en esa tabla — accesible por Claude en chat, por otros modelos de IA con capacidad de fetch de URLs, o por cualquier persona, sin clonar el repo.
+
 ## Estado del Runtime Python
 
 El motor de orquestación en `core/` + `skills/` es ejecutable localmente (`python3 run_pulse.py --dry-run`). Ver [`STATUS.md`](STATUS.md) para el estado real y verificado (qué existe, qué no, y qué está pendiente).
