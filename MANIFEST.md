@@ -3,6 +3,7 @@
 **Repositorio Maestro:** skills-soberanos
 **Fecha de actualización:** 2026-07-23
 **Convención de skills:** ver `ecosistema-orchestrator/references/ecosistema-guidelines.md` (documento canónico).
+**Prompt de onboarding para cualquier modelo de IA:** ver [`PROMPT_UNIVERSAL.md`](PROMPT_UNIVERSAL.md).
 
 ## Skills (prompt, en la raíz del repo)
 

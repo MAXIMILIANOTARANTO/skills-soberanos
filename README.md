@@ -10,6 +10,8 @@ El inventario completo y actualizado de skills (13 en total), su estado y propó
 
 Cada skill tiene una URL directa (`raw.githubusercontent.com`) en esa tabla — accesible por Claude en chat, por otros modelos de IA con capacidad de fetch de URLs, o por cualquier persona, sin clonar el repo.
 
+Para que cualquier modelo de IA sepa cómo encontrar y usar estos skills, hay un prompt listo para copiar y pegar en [`PROMPT_UNIVERSAL.md`](PROMPT_UNIVERSAL.md).
+
 ## Estado del Runtime Python
 
 El motor de orquestación en `core/` + `skills/` es ejecutable localmente (`python3 run_pulse.py --dry-run`). Ver [`STATUS.md`](STATUS.md) para el estado real y verificado (qué existe, qué no, y qué está pendiente).
