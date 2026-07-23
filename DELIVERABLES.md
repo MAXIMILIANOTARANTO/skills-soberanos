@@ -1,5 +1,7 @@
 # 📦 ENTREGABLES FINALES SEMANA 1
 
+> ⚠️ **Nota de vigencia (23 de julio de 2026):** este documento afirma entregas (`.github/workflows/ecosystem-pulse.yml`, `ui/index.html`, `scripts/`, `run_local_pulse.py`, `ROADMAP.md`, `core/coherence_router.py`, `core/skill_base.py`, entre otras) que en realidad nunca llegaron a existir en el repositorio en la fecha indicada abajo. Se conserva como registro histórico de la intención original de esa sesión, no como estado actual. Para el estado real y verificado, ver [`STATUS.md`](STATUS.md).
+
 **Ecosistema Soberano MVP v1.0**  
 **Fecha:** 2 de julio de 2026  
 **Estado:** ✅ COMPLETADO Y OPERATIVO  

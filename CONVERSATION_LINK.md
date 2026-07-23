@@ -1,5 +1,7 @@
 # 🌐 ECOSISTEMA SOBERANO — Semana 1 ENTREGADO ✅
 
+> ⚠️ **Nota de vigencia (23 de julio de 2026):** el conteo de líneas/archivos y el estado "operativo en producción" de este documento no reflejan lo que realmente existe en el repositorio (no hay dashboard, GitHub Actions, ni varios de los scripts mencionados). Se conserva como registro histórico. Para el estado real, ver [`STATUS.md`](STATUS.md).
+
 **Status:** 🟢 **OPERATIVO EN PRODUCCIÓN**  
 **Fecha:** 2 de julio de 2026  
 **Presupuesto:** $0 USD (de $10 disponibles)  

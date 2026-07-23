@@ -1,5 +1,7 @@
 # 🌀 ECOSISTEMA SOBERANO — RESUMEN MAESTRO SEMANA 1
 
+> ⚠️ **Nota de vigencia (23 de julio de 2026):** este resumen afirma un dashboard en vivo, GitHub Actions automatizado y otros entregables que nunca llegaron a existir en el repositorio. Se conserva como registro histórico. Para el estado real, ver [`STATUS.md`](STATUS.md).
+
 **Desarrollador:** Maximiliano Taranto (@MAXIMILIANOTARANTO)  
 **Fecha:** 2 de julio de 2026  
 **Estado:** 🟢 MVP COMPLETADO Y OPERATIVO  
