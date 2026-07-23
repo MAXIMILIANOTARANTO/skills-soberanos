@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vórtice Total Iluminado • v2.3</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&amp;family=Space+Grotesk:wght@500;600&amp;display=swap');
+        body { font-family: 'Inter', system_ui, sans-serif; }
+        .font-display { font-family: 'Space Grotesk', 'Inter', sans-serif; font-weight: 600; }
+        .glass { background: rgba(255,255,255, 0.05); backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255, 0.08); }
+        .metric-value { font-variant-numeric: tabular-nums; }
+        .section-header { font-size: 0.95rem; letter-spacing: -0.02em; font-weight: 600; color: #67e8f9; }
+    </style>
+</head>
+<body class="bg-zinc-950 text-zinc-200">
+    <nav class="border-b border-white/10 bg-zinc-950/90 backdrop-blur-xl sticky top-0 z-50">
+        <div class="max-w-screen-2xl mx-auto px-8 py-4 flex items-center justify-between">
+            <div class="flex items-center gap-x-3">
+                <div class="w-9 h-9 rounded-2xl bg-gradient-to-br from-cyan-400 to-teal-500 flex items-center justify-center">
+                    <i class="fa-solid fa-infinity text-zinc-950 text-3xl"></i>
+                </div>
+                <div>
+                    <span class="font-display text-2xl tracking-tighter font-semibold">Vórtice</span>
+                    <span class="font-display text-2xl tracking-tighter text-white/50">Total</span>
+                </div>
+                <div class="px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-400 text-[10px] font-mono flex items-center gap-x-1.5 border border-emerald-500/20">
+                    <div class="w-1.5 h-1.5 bg-emerald-400 rounded-full animate-pulse"></div>
+                    <span>LIVE</span>
+                </div>
+            </div>
+            <div class="text-xs text-white/50 font-mono">22 JUL 2026 • 21:16 ART</div>
+        </div>
+    </nav>
+
+    <div class="max-w-screen-2xl mx-auto px-8 pt-8 pb-16">
+
+        <!-- Header -->
+        <div class="flex items-end justify-between mb-8">
+            <div>
+                <h1 class="font-display text-5xl tracking-tighter font-semibold">Estado del Vórtice</h1>
+                <p class="text-zinc-400 mt-1">Maximiliano Taranto • Núcleo Soberano • TUC</p>
+            </div>
+            <div class="text-right">
+                <div class="text-xs text-zinc-500">COHERENCIA DEL ECOSISTEMA</div>
+                <div class="flex items-baseline justify-end gap-x-1">
+                    <span class="font-display text-6xl font-semibold text-emerald-400">87</span>
+                    <span class="text-emerald-400/70 text-2xl">/100</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Métricas -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+            
+            <!-- TAO -->
+            <div class="glass rounded-3xl p-6 border border-white/10">
+                <div class="flex justify-between items-start">
+                    <div>
+                        <div class="flex items-center gap-x-2">
+                            <span class="text-xs px-2 py-0.5 rounded bg-orange-500/10 text-orange-400 font-medium">CORE</span>
+                            <span class="text-xs text-white/50">Bittensor (TAO)</span>
+                        </div>
+                        <div class="metric-value text-4xl font-semibold mt-3">$204.50</div>
+                    </div>
+                    <div class="text-right">
+                        <div class="text-emerald-400 text-sm font-medium">+2.84%</div>
+                    </div>
+                </div>
+                <div class="mt-6 text-xs grid grid-cols-3 gap-3">
+                    <div><div class="text-white/50">Market Cap</div><div class="font-medium">$1.95B</div></div>
+                    <div><div class="text-white/50">Volumen 24h</div><div class="font-medium">$118M</div></div>
+                    <div><div class="text-white/50">Coherencia TUC</div><div class="font-medium text-emerald-400">92/100</div></div>
+                </div>
+            </div>
+
+            <!-- VIRTUAL -->
+            <div class="glass rounded-3xl p-6 border border-white/10">
+                <div class="flex justify-between items-start">
+                    <div>
+                        <div class="flex items-center gap-x-2">
+                            <span class="text-xs px-2 py-0.5 rounded bg-violet-500/10 text-violet-400 font-medium">HIGH-BETA</span>
+                            <span class="text-xs text-white/50">Virtuals (VIRTUAL)</span>
+                        </div>
+                        <div class="metric-value text-4xl font-semibold mt-3">$0.525</div>
+                    </div>
+                    <div class="text-right">
+                        <div class="text-red-400 text-sm font-medium">-3.12%</div>
+                    </div>
+                </div>
+                <div class="mt-6 text-xs grid grid-cols-3 gap-3">
+                    <div><div class="text-white/50">Market Cap</div><div class="font-medium">$348M</div></div>
+                    <div><div class="text-white/50">Volumen 24h</div><div class="font-medium">$41M</div></div>
+                    <div><div class="text-white/50">Coherencia TUC</div><div class="font-medium text-amber-400">78/100</div></div>
+                </div>
+            </div>
+
+            <div class="glass rounded-3xl p-6 border border-white/10 flex flex-col justify-between">
+                <div>
+                    <div class="text-xs text-white/50">SALUD DEL ECOSISTEMA</div>
+                    <div class="text-4xl font-semibold mt-2">Óptimo</div>
+                </div>
+                <div class="mt-auto text-xs">
+                    <div class="flex justify-between text-white/50"><div>Skills activos</div><div class="font-mono text-white">48 / 52</div></div>
+                    <div class="flex justify-between text-white/50 mt-1"><div>Conectores vivos</div><div class="font-mono text-white">12 / 14</div></div>
+                </div>
+            </div>
+
+            <div class="glass rounded-3xl p-6 border border-white/10">
+                <div class="text-xs text-white/50">ÚLTIMA SINCRONIZACIÓN</div>
+                <div class="mt-2"><div class="font-mono text-2xl">21:16</div><div class="text-xs text-white/50">22 julio 2026 • ART</div></div>
+                <div class="mt-4"><span class="px-2 py-1 rounded bg-emerald-500/10 text-emerald-400 text-[10px]">GitHub Actions • Actualizado</span></div>
+            </div>
+        </div>
+
+        <!-- Análisis TUC -->
+        <div class="glass rounded-3xl p-8 border border-white/10 mb-8">
+            <div class="section-header mb-4 flex items-center gap-x-2">
+                <i class="fa-solid fa-waveform-lines"></i>
+                <span>ANÁLISIS TUC • SECTOR IA DESCENTRALIZADA</span>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-sm">
+                <div>
+                    <div class="text-white/60 text-xs mb-1">CONCENTRACIÓN ESPECTRAL (AR1)</div>
+                    <div class="text-2xl font-semibold">0.87 <span class="text-xs text-emerald-400 font-normal">↑ 0.04</span></div>
+                    <div class="text-xs text-white/50 mt-1">Alta sincronización. Fase de acumulación/coiling detectada.</div>
+                </div>
+                <div>
+                    <div class="text-white/60 text-xs mb-1">ESCALA TEMPORAL</div>
+                    <div class="text-2xl font-semibold">Media-Larga</div>
+                    <div class="text-xs text-white/50 mt-1">Capital inteligente rotando hacia infraestructura real (subnets + agentes).</div>
+                </div>
+                <div>
+                    <div class="text-white/60 text-xs mb-1">COHERENCIA DEL CAMPO</div>
+                    <div class="text-2xl font-semibold text-emerald-400">Alta</div>
+                    <div class="text-xs text-white/50 mt-1">TAO como núcleo estabilizador. VIRTUAL con mayor asimetría de upside.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Niveles de Entrada -->
+        <div class="glass rounded-3xl p-8 border border-white/10 mb-8">
+            <div class="section-header mb-5">NIVELES DE ENTRADA SUGERIDOS (Datos Reales + TUC)</div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm">
+                <!-- TAO -->
+                <div class="border-l-2 border-emerald-400 pl-4">
+                    <div class="font-semibold text-emerald-400 mb-2">TAO — Core (55-65%)</div>
+                    <div class="space-y-1 text-xs">
+                        <div><span class="text-white/50">Zona de entrada ideal:</span> <span class="font-mono">$195 – $202</span></div>
+                        <div><span class="text-white/50">Zona de escalado (dip):</span> <span class="font-mono">$188 – $192</span></div>
+                        <div><span class="text-white/50">Target parcial 1:</span> <span class="font-mono">$235</span> <span class="text-emerald-400">(+15%)</span></div>
+                        <div><span class="text-white/50">Target parcial 2:</span> <span class="font-mono">$280</span> <span class="text-emerald-400">(+37%)</span></div>
+                    </div>
+                </div>
+                
+                <!-- VIRTUAL -->
+                <div class="border-l-2 border-violet-400 pl-4">
+                    <div class="font-semibold text-violet-400 mb-2">VIRTUAL — High-Beta (20-25%)</div>
+                    <div class="space-y-1 text-xs">
+                        <div><span class="text-white/50">Zona de entrada ideal:</span> <span class="font-mono">$0.48 – $0.52</span></div>
+                        <div><span class="text-white/50">Zona de escalado (dip fuerte):</span> <span class="font-mono">$0.42 – $0.45</span></div>
+                        <div><span class="text-white/50">Target parcial 1:</span> <span class="font-mono">$0.75</span> <span class="text-emerald-400">(+43%)</span></div>
+                        <div><span class="text-white/50">Target parcial 2:</span> <span class="font-mono">$1.10</span> <span class="text-emerald-400">(+110%)</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Journal de Decisiones -->
+        <div class="glass rounded-3xl p-8 border border-white/10">
+            <div class="section-header mb-5 flex items-center gap-x-2">
+                <i class="fa-solid fa-book"></i>
+                <span>JOURNAL DE DECISIONES • TRAZABILIDAD TUC</span>
+            </div>
+            
+            <div class="space-y-5 text-sm">
+                <div class="border-l-2 border-emerald-400 pl-4">
+                    <div class="flex justify-between text-xs text-white/50">
+                        <div>22 Jul 2026 • 21:16</div>
+                        <div class="font-mono">Decision #003</div>
+                    </div>
+                    <div class="font-medium mt-1">Actualización a Dashboard v2.3 + Creación de skill maestro-ecosistema-real-time</div>
+                    <div class="text-xs text-white/60 mt-1">Razón TUC: Integrar orquestrador en tiempo real con GitHub Pages publisher para materializar el pulso vivo del Vórtice. Alta coherencia con principios de soberanía y trazabilidad.</div>
+                </div>
+
+                <div class="border-l-2 border-emerald-400 pl-4">
+                    <div class="flex justify-between text-xs text-white/50">
+                        <div>08 Jul 2026 • 17:28</div>
+                        <div class="font-mono">Decision #001</div>
+                    </div>
+                    <div class="font-medium mt-1">Salida completa de 币安人生 → Entrada inicial en TAO</div>
+                    <div class="text-xs text-white/60 mt-1">Razón TUC: Baja coherencia (meme maduro) → Alta coherencia (infraestructura real con subnets medibles). Escala temporal más sana.</div>
+                </div>
+
+                <div class="border-l-2 border-violet-400 pl-4">
+                    <div class="flex justify-between text-xs text-white/50">
+                        <div>08 Jul 2026 • 17:35</div>
+                        <div class="font-mono">Decision #002</div>
+                    </div>
+                    <div class="font-medium mt-1">Definición de asignación: TAO 60% + VIRTUAL 25% + SENT 10% + USDT 5%</div>
+                    <div class="text-xs text-white/60 mt-1">Razón TUC: Máxima coherencia estructural (TAO) + mayor asimetría controlada (VIRTUAL). Mantiene exposición a la ola de IA descentralizada.</div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>
