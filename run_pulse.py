@@ -16,6 +16,7 @@ import argparse
 import json
 from datetime import datetime
 from pathlib import Path
+from typing import Dict
 
 # Imports del ecosistema
 try:
@@ -62,11 +63,14 @@ class EcosystemPulse:
                 print("    ⚠️  GITHUB_TOKEN no configurado. Funcionará en modo local.")
                 self.memory = None
             else:
-                # En versión real, conectaría con GitHub
-                self.memory = MemoryGitHubManager(
-                    repo_name="MAXIMILIANOTARANTO/ecosistema-soberano-github",
-                    token=self.github_token
-                )
+                try:
+                    from github import Github
+                    gh_client = Github(self.github_token)
+                    repo = gh_client.get_repo("MAXIMILIANOTARANTO/ecosistema-soberano-github")
+                    self.memory = MemoryGitHubManager(repo=repo)
+                except Exception as e:
+                    print(f"    ⚠️  No se pudo conectar al repo de memoria en GitHub ({e}). Funcionará en modo local.")
+                    self.memory = None
             
             # 3. Coherence Meter
             print("  → Inicializando Coherence Meter...")
@@ -133,7 +137,8 @@ class EcosystemPulse:
             )
             
             print(f"  ✅ {len(orch_result['activated_skills'])} skills activados")
-            print(f"     Resonancia: {[f\"{s['skill']}({s['resonance']})\" for s in orch_result['resonance_scores'][:3]]}\n")
+            resonance_display = [f"{s['skill']}({s['resonance']})" for s in orch_result['resonance_scores'][:3]]
+            print(f"     Resonancia: {resonance_display}\n")
             
         except Exception as e:
             print(f"  ❌ Error en orquestación: {e}")

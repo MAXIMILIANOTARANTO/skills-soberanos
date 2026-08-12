@@ -1,5 +1,7 @@
 # 📋 ESTRATEGIA DE EJECUCIÓN FINAL — Ecosistema Soberano MVP
 
+> ⚠️ **Nota de vigencia (23 de julio de 2026):** este documento describe como "completado" infraestructura (`scripts/`, `.github/workflows/`, dashboard, `run_local_pulse.py`) que nunca llegó a existir en el repositorio. Se conserva como registro histórico de la sesión del 2 de julio de 2026. Para el estado real, ver [`STATUS.md`](STATUS.md).
+
 **Fecha:** 2 de julio de 2026  
 **Fase:** Ejecución y Consolidación  
 **Objetivo:** Finalizar Semana 1 y validar operación

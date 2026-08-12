@@ -1,5 +1,7 @@
 # 🚀 PRÓXIMOS PASOS INMEDIATOS — Ecosistema Soberano
 
+> ⚠️ **Nota de vigencia (23 de julio de 2026):** los pasos de este documento (`run_local_pulse.py`, `scripts/setup_local.sh`, `.github/workflows/`, dashboard en `ui/`) asumen archivos que nunca llegaron a existir en el repositorio. Se conserva como registro histórico, no como instrucciones válidas hoy. Para el estado real y cómo correr el sistema tal como existe, ver [`STATUS.md`](STATUS.md).
+
 **Fecha:** 2 de julio de 2026  
 **Estado:** MVP COMPLETADO - LISTO PARA EJECUCIÓN  
 **Acción requerida:** AHORA (en este momento)

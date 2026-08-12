@@ -1,5 +1,7 @@
 # 🤖 PROMPT DE ACTIVACIÓN PARA GROK-iOS — Ecosistema Soberano
 
+> ⚠️ **Nota de vigencia (23 de julio de 2026):** el prompt de abajo describe entregables (dashboard, GitHub Actions) que nunca llegaron a existir en el repositorio. Si se reutiliza este prompt, ajustar esa sección primero — ver el estado real en [`STATUS.md`](STATUS.md).
+
 **Destino:** Chat de Claude/Grok en iOS  
 **Contexto:** Ecosistema Soberano Semana 1 Completada  
 **Propósito:** Activar análisis meta y feedback del sistema  

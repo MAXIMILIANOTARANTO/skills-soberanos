@@ -4,24 +4,17 @@
 
 Alineado con TUC (Teoría Unificada de la Conciencia), MHE y el principio de soberanía tecnológica y creativa.
 
-## Skills Actuales (27 junio 2026)
+## Skills Actuales
 
-### 1. funcional-webapp-creator
-Generador especializado en aplicaciones web funcionales self-contained (single-file o estructura mínima).
-- UI moderna con tabs, formularios, Gemini + búsqueda
-- Memoria con cadena de hashes (blockchain-style)
-- Deployment directo a GitHub Pages
-- Plantilla base incluida
+El inventario completo y actualizado de skills (13 en total), su estado y propósito, vive en [`MANIFEST.md`](MANIFEST.md) — esa es la fuente de verdad, no esta lista.
 
-### 2. meta-hilo-grok
-**Meta-orquestrador evolutivo.**
-- Analiza hilos completos de conversación
-- Extrae objetivos, patrones y bucles abiertos
-- Crea métodos accionables
-- Descubre y activa skills relevantes
-- Propone y crea nuevos skills cuando detecta gaps
-- Orquesta GitHub, Pages y todo el ecosistema
-- Aprende persistentemente
+Cada skill tiene una URL directa (`raw.githubusercontent.com`) en esa tabla — accesible por Claude en chat, por otros modelos de IA con capacidad de fetch de URLs, o por cualquier persona, sin clonar el repo.
+
+Para que cualquier modelo de IA sepa cómo encontrar y usar estos skills, hay un prompt listo para copiar y pegar en [`PROMPT_UNIVERSAL.md`](PROMPT_UNIVERSAL.md).
+
+## Estado del Runtime Python
+
+El motor de orquestación en `core/` + `skills/` es ejecutable localmente (`python3 run_pulse.py --dry-run`). Ver [`STATUS.md`](STATUS.md) para el estado real y verificado (qué existe, qué no, y qué está pendiente).
 
 ## Principios del Ecosistema
 - **Soberanía radical**: El usuario controla todo. Los skills sirven, no dirigen.
@@ -32,7 +25,6 @@ Generador especializado en aplicaciones web funcionales self-contained (single-f
 
 ## Estado Actual
 - RadarUsados desplegado y funcional en GitHub Pages
-- Dos skills nuevos creados y versionados
 - Meta-orquestrador activo y tomando iniciativa
 
 ## Iniciativas en Curso (Meta-Hilo-Grok)
