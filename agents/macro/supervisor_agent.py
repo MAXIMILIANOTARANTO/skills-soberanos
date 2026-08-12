@@ -13,15 +13,13 @@ Conecta con todos los repositorios del ecosistema a través del registry.
 
 from __future__ import annotations
 
-from datetime import datetime
 from typing import Any, Dict, List, Optional
 
-from agents.macro.base_macro_agent import BaseMacroAgent
-from agents.protocol import (
-    TaskRequest,
+from .base_macro_agent import BaseMacroAgent
+from ..protocol import (
     TaskResult,
-    TaskStatus,
     make_task_request,
+    utc_now_iso,
 )
 
 
@@ -73,7 +71,7 @@ class SupervisorAgent(BaseMacroAgent):
         """
         context = context or {}
         self._log("handle_start", {"intent": intent[:200]})
-        timestamp_start = datetime.utcnow().isoformat() + "Z"
+        timestamp_start = utc_now_iso()
 
         # PASO 1 — Evaluar resonancia
         scored = self._score_agents(intent)

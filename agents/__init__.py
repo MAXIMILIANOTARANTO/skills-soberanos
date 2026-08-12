@@ -28,22 +28,46 @@ Uso rápido:
     result = supervisor.handle("Analizar coherencia del ecosistema")
 """
 
-from agents.protocol import AgentMessage, AgentEvent, TaskRequest, TaskResult
-from agents.registry import AgentRegistry, ECOSYSTEM_REPOS, get_global_registry
-from agents.loader import SkillLoader
-from agents.micro.base_micro_agent import BaseMicroAgent
-from agents.macro.base_macro_agent import BaseMacroAgent
-from agents.macro.supervisor_agent import SupervisorAgent
-from agents.macro.resource_orchestrator import ResourceOrchestrator
-from agents.macro.status_monitor import StatusMonitor
-from agents.macro.priority_manager import PriorityManager
+from .protocol import (
+    AgentEvent,
+    AgentMessage,
+    AgentTier,
+    MessageType,
+    TaskRequest,
+    TaskResult,
+    TaskStatus,
+    make_error_result,
+    make_success_result,
+    make_task_request,
+)
+from .registry import AgentRegistry, ECOSYSTEM_REPOS, get_global_registry
+from .loader import SkillLoader
+from .micro import (
+    BaseMicroAgent,
+    CoherencePulseAgent,
+    MemoryManagerAgent,
+    MetaHiloGrokAgent,
+)
+from .macro import (
+    BaseMacroAgent,
+    PriorityManager,
+    ResourceOrchestrator,
+    StatusMonitor,
+    SupervisorAgent,
+)
 
 __all__ = [
     # Protocol
     "AgentMessage",
     "AgentEvent",
+    "MessageType",
     "TaskRequest",
     "TaskResult",
+    "TaskStatus",
+    "AgentTier",
+    "make_task_request",
+    "make_success_result",
+    "make_error_result",
     # Registry & Loader
     "AgentRegistry",
     "ECOSYSTEM_REPOS",
@@ -51,6 +75,9 @@ __all__ = [
     "SkillLoader",
     # Micro
     "BaseMicroAgent",
+    "CoherencePulseAgent",
+    "MemoryManagerAgent",
+    "MetaHiloGrokAgent",
     # Macro
     "BaseMacroAgent",
     "SupervisorAgent",

@@ -59,7 +59,7 @@ La función principal del ecosistema es **crear**. Cualquier elemento que desví
 
 ## Integración Cross-Repo: Ecosistema de Repositorios
 
-Este repositorio es el **hub de skills y agentes** del ecosistema. El directorio `agents/` implementa el framework jerárquico (macro-orquestadores + micro-agentes).
+Este repositorio es el **hub de skills y agentes** del ecosistema. El directorio `agents/` implementa el framework jerárquico (macro-orquestadores + micro-agentes) como una capa Python **importable y testeable de forma local**. El mapa cross-repo de abajo documenta relaciones conceptuales del ecosistema; no implica que el runtime necesite clonar o acoplarse directamente a esos repositorios para cargar el framework.
 
 ### Mapa de Repositorios
 
@@ -114,4 +114,11 @@ result = supervisor.handle("Analizar coherencia del ecosistema")
 # → descompone intención → activa micro-agentes resonantes → sintetiza resultado
 ```
 
-El mapa completo del ecosistema está en `agents/registry.py` (`ECOSYSTEM_REPOS`).
+Puntos de diseño actuales:
+
+- `agents.protocol` define los contratos (`TaskRequest`, `TaskResult`, `AgentMessage`) compartidos por capas macro y micro.
+- `agents.loader.SkillLoader` preserva la carga dinámica: descubre skills desde `skills/` y prioriza agentes especializados cuando existen.
+- `agents.registry.AgentRegistry` mantiene el registro de agentes activos y además expone el mapa documental `ECOSYSTEM_REPOS`.
+- `agents.macro.*` orquesta; `agents.micro.*` encapsula ejecución de skills.
+
+El mapa completo del ecosistema vive en `agents/registry.py` (`ECOSYSTEM_REPOS`), pero el framework restaurado está pensado para seguir funcionando y poder probarse aun cuando solo este repositorio esté disponible.

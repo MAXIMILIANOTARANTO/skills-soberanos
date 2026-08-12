@@ -9,8 +9,8 @@ from __future__ import annotations
 
 from typing import Any, Dict
 
-from agents.micro.base_micro_agent import BaseMicroAgent
-from agents.protocol import TaskRequest
+from .base_micro_agent import BaseMicroAgent, load_skill_instance
+from ..protocol import TaskRequest
 
 
 class MemoryManagerAgent(BaseMicroAgent):
@@ -31,9 +31,16 @@ class MemoryManagerAgent(BaseMicroAgent):
 
     DEFAULT_OPERATION = "stats"
 
-    def __init__(self):
-        from skills.memory_manager.memory_manager_skill import MemoryManagerSkill  # type: ignore[import]
-        super().__init__(skill=MemoryManagerSkill(), agent_id="micro:memory-manager")
+    def __init__(self, skill: Any = None):
+        super().__init__(
+            skill=skill
+            or load_skill_instance(
+                class_name="MemoryManagerSkill",
+                module_candidates=("skills.memory_manager.memory_manager_skill",),
+                relative_file="skills/memory-manager/memory_manager_skill.py",
+            ),
+            agent_id="micro:memory-manager",
+        )
 
     def _build_context(self, request: TaskRequest) -> Dict[str, Any]:
         ctx = super()._build_context(request)

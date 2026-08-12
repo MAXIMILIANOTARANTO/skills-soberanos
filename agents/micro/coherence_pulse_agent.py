@@ -10,8 +10,8 @@ from __future__ import annotations
 
 from typing import Any, Dict
 
-from agents.micro.base_micro_agent import BaseMicroAgent
-from agents.protocol import TaskRequest
+from .base_micro_agent import BaseMicroAgent, load_skill_instance
+from ..protocol import TaskRequest
 
 
 class CoherencePulseAgent(BaseMicroAgent):
@@ -24,9 +24,16 @@ class CoherencePulseAgent(BaseMicroAgent):
     - Comparte estado con `el-iluminador-nucleo-soberano` para sincronización.
     """
 
-    def __init__(self):
-        from skills.coherence_pulse.coherence_pulse_skill import CoherencePulseSkill  # type: ignore[import]
-        super().__init__(skill=CoherencePulseSkill(), agent_id="micro:coherence-pulse")
+    def __init__(self, skill: Any = None):
+        super().__init__(
+            skill=skill
+            or load_skill_instance(
+                class_name="CoherencePulseSkill",
+                module_candidates=("skills.coherence_pulse.coherence_pulse_skill",),
+                relative_file="skills/coherence-pulse/coherence_pulse_skill.py",
+            ),
+            agent_id="micro:coherence-pulse",
+        )
 
     def _build_context(self, request: TaskRequest) -> Dict[str, Any]:
         ctx = super()._build_context(request)

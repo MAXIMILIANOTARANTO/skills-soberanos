@@ -11,19 +11,64 @@ Un micro-agente:
 
 from __future__ import annotations
 
+import importlib
+import importlib.util
+import sys
 import time
-from datetime import datetime
-from typing import Any, Dict, Optional
+from pathlib import Path
+from typing import Any, Dict, Iterable, Optional
 
 from core.skill_base import Skill
-from agents.protocol import (
+from ..protocol import (
+    AgentTier,
     TaskRequest,
     TaskResult,
     TaskStatus,
-    AgentTier,
     make_success_result,
     make_error_result,
+    utc_now_iso,
 )
+
+_PROJECT_ROOT = Path(__file__).resolve().parents[2]
+
+
+def load_skill_instance(
+    *,
+    class_name: str,
+    module_candidates: Iterable[str] = (),
+    relative_file: Optional[str] = None,
+) -> Skill:
+    """
+    Resolver una clase de skill por módulo importable o por archivo relativo.
+
+    Esto permite mantener agentes especializados aunque los directorios reales
+    de `skills/` usen guiones en lugar de nombres importables de paquete.
+    """
+
+    for module_name in module_candidates:
+        try:
+            module = importlib.import_module(module_name)
+        except ModuleNotFoundError:
+            continue
+
+        skill_cls = getattr(module, class_name, None)
+        if isinstance(skill_cls, type) and issubclass(skill_cls, Skill):
+            return skill_cls()
+
+    if relative_file:
+        skill_path = _PROJECT_ROOT / relative_file
+        if skill_path.exists():
+            module_name = f"_agents_skill_{skill_path.stem}_{class_name}"
+            spec = importlib.util.spec_from_file_location(module_name, skill_path)
+            if spec and spec.loader:
+                module = importlib.util.module_from_spec(spec)
+                sys.modules[module_name] = module
+                spec.loader.exec_module(module)  # type: ignore[union-attr]
+                skill_cls = getattr(module, class_name, None)
+                if isinstance(skill_cls, type) and issubclass(skill_cls, Skill):
+                    return skill_cls()
+
+    raise ImportError(f"No se pudo resolver el skill {class_name!r}")
 
 
 class BaseMicroAgent:
@@ -48,7 +93,7 @@ class BaseMicroAgent:
         self.skill = skill
         self.agent_id: str = agent_id or f"micro:{skill.name}"
         self.skill_name: str = skill.name
-        self.created_at: str = datetime.utcnow().isoformat() + "Z"
+        self.created_at: str = utc_now_iso()
         self.total_tasks: int = 0
         self.successful_tasks: int = 0
 
@@ -69,15 +114,25 @@ class BaseMicroAgent:
         try:
             context = self._build_context(request)
             raw_result = self.skill.execute(context)
+            normalized_output = self._normalize_output(raw_result)
 
             duration_ms = int(time.time() * 1000) - start_ms
-            q_impact = float(raw_result.get("q_impact", 0.0))
+            error_message = self._extract_error(normalized_output)
+            if error_message:
+                return make_error_result(
+                    task_id=request.task_id,
+                    agent_id=self.agent_id,
+                    error=error_message,
+                    duration_ms=duration_ms,
+                )
+
+            q_impact = float(normalized_output.get("q_impact", 0.0))
 
             self.successful_tasks += 1
             return make_success_result(
                 task_id=request.task_id,
                 agent_id=self.agent_id,
-                output=raw_result,
+                output=normalized_output,
                 q_impact=q_impact,
                 duration_ms=duration_ms,
             )
@@ -124,6 +179,23 @@ class BaseMicroAgent:
         ctx["task_id"] = request.task_id
         ctx["requester_id"] = request.requester_id
         return ctx
+
+    def _normalize_output(self, raw_result: Any) -> Dict[str, Any]:
+        """Normalizar la salida del skill a un diccionario serializable."""
+        if isinstance(raw_result, dict):
+            return raw_result
+        return {"result": raw_result}
+
+    def _extract_error(self, output: Dict[str, Any]) -> Optional[str]:
+        """Detectar errores declarativos devueltos por el skill."""
+        status = str(output.get("status", "")).lower()
+        if status in {TaskStatus.ERROR.value, "failed", "failure"}:
+            return str(output.get("error") or f"{self.skill_name} devolvió status={status}")
+
+        if output.get("succeeded") is False:
+            return str(output.get("error") or f"{self.skill_name} devolvió succeeded=False")
+
+        return None
 
     # ------------------------------------------------------------------ #
     # REPRESENTACIÓN                                                       #

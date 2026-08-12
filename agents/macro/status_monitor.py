@@ -10,11 +10,10 @@ Responsabilidades:
 
 from __future__ import annotations
 
-from datetime import datetime
 from typing import Any, Dict, List, Optional
 
-from agents.macro.base_macro_agent import BaseMacroAgent
-from agents.protocol import TaskResult
+from .base_macro_agent import BaseMacroAgent
+from ..protocol import TaskResult, utc_now_iso
 
 
 class StatusMonitor(BaseMacroAgent):
@@ -55,7 +54,7 @@ class StatusMonitor(BaseMacroAgent):
         total_q = sum(r.q_impact for r in results)
 
         entry = {
-            "timestamp": datetime.utcnow().isoformat() + "Z",
+            "timestamp": utc_now_iso(),
             "intent": intent[:200],
             "total_tasks": len(results),
             "successful": successful,
