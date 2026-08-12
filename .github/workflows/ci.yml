@@ -1,0 +1,95 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    name: Python tests
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.11", "3.12"]
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: pip
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Run pytest
+        run: |
+          pytest tests/ -v --tb=short
+
+      - name: Dry-run pulse (no credentials)
+        run: |
+          python run_pulse.py --dry-run
+        continue-on-error: true
+
+  skills-structure:
+    name: Skills structure check
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Validate SKILL.md presence and frontmatter
+        run: |
+          set -e
+          echo "Checking core TUC research skills..."
+          REQUIRED=(
+            tuc-builder/SKILL.md
+            tuc-research-orchestrator/SKILL.md
+            tuc-reflexion/SKILL.md
+            tcu-detector/SKILL.md
+            tuc-statistician/SKILL.md
+            tuc-critic/SKILL.md
+            tuc-field-feedback/SKILL.md
+            tuc-synthesizer/SKILL.md
+            tuc-research-ecosystem/WORKFLOW.md
+            MANIFEST.md
+          )
+          for f in "${REQUIRED[@]}"; do
+            if [ ! -f "$f" ]; then
+              echo "MISSING: $f"
+              exit 1
+            fi
+            echo "OK: $f"
+          done
+
+          echo "Checking YAML frontmatter on SKILL.md files..."
+          for skill in tuc-builder tuc-research-orchestrator tuc-reflexion tcu-detector tuc-statistician tuc-critic tuc-field-feedback tuc-synthesizer; do
+            f="$skill/SKILL.md"
+            if ! head -n 1 "$f" | grep -q '^---$'; then
+              echo "No frontmatter start in $f"
+              exit 1
+            fi
+            if ! grep -q '^name:' "$f"; then
+              echo "Missing name: in $f"
+              exit 1
+            fi
+            if ! grep -q '^description:' "$f"; then
+              echo "Missing description: in $f"
+              exit 1
+            fi
+            echo "Frontmatter OK: $f"
+          done
+
+          echo "All structure checks passed."
