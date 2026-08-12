@@ -29,7 +29,7 @@ Uso rápido:
 """
 
 from agents.protocol import AgentMessage, AgentEvent, TaskRequest, TaskResult
-from agents.registry import AgentRegistry
+from agents.registry import AgentRegistry, ECOSYSTEM_REPOS, get_global_registry
 from agents.loader import SkillLoader
 from agents.micro.base_micro_agent import BaseMicroAgent
 from agents.macro.base_macro_agent import BaseMacroAgent
@@ -46,6 +46,8 @@ __all__ = [
     "TaskResult",
     # Registry & Loader
     "AgentRegistry",
+    "ECOSYSTEM_REPOS",
+    "get_global_registry",
     "SkillLoader",
     # Micro
     "BaseMicroAgent",
