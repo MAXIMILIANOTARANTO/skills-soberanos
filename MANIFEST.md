@@ -1,7 +1,7 @@
 # MANIFEST - Ecosistema Soberano de Skills
 
 **Repositorio Maestro:** skills-soberanos
-**Fecha de actualización:** 2026-08-12
+**Fecha de actualización:** 2026-09-05
 **Convención de skills:** ver `ecosistema-orchestrator/references/ecosistema-guidelines.md` (documento canónico).
 **Prompt de onboarding para cualquier modelo de IA:** ver [`PROMPT_UNIVERSAL.md`](PROMPT_UNIVERSAL.md).
 
@@ -23,6 +23,7 @@ Al agregar un skill nuevo, su URL se arma reemplazando `<carpeta-del-skill>` por
 | `funcional-webapp-creator` | ✅ | — | Diseña, genera y despliega apps web funcionales self-contained. | [SKILL.md](https://raw.githubusercontent.com/MAXIMILIANOTARANTO/skills-soberanos/main/funcional-webapp-creator/SKILL.md) |
 | `github-external-token-memory` | ✅ | — | Offload de contexto largo a una carpeta de GitHub con trazabilidad blockchange. | [SKILL.md](https://raw.githubusercontent.com/MAXIMILIANOTARANTO/skills-soberanos/main/github-external-token-memory/SKILL.md) |
 | `inmunidad-soberana` | ✅ | — | Detecta/neutraliza inyecciones narrativas y mantiene coherencia de identidad. | [SKILL.md](https://raw.githubusercontent.com/MAXIMILIANOTARANTO/skills-soberanos/main/inmunidad-soberana/SKILL.md) |
+| `lengua-situada` | ✅ | ✅ | Disciplina de habla: no sellar de fábrica, caras de la palabra, paradigma, conclusion del intercambio. | [SKILL.md](https://raw.githubusercontent.com/MAXIMILIANOTARANTO/skills-soberanos/main/lengua-situada/SKILL.md) |
 | `memoria-blockchange-persistente` | ✅ | — | Memoria append-only encadenada de lecciones, incidentes y decisiones. | [SKILL.md](https://raw.githubusercontent.com/MAXIMILIANOTARANTO/skills-soberanos/main/memoria-blockchange-persistente/SKILL.md) |
 | `meta-hilo-grok` | ✅ | ✅ | Analiza hilos de conversación, extrae objetivos, crea métodos, detecta gaps de skills. | [SKILL.md](https://raw.githubusercontent.com/MAXIMILIANOTARANTO/skills-soberanos/main/meta-hilo-grok/SKILL.md) |
 | `orquestador-soberano` | ✅ | — | Sistema nervioso central: decide qué skills activar y en qué orden. | [SKILL.md](https://raw.githubusercontent.com/MAXIMILIANOTARANTO/skills-soberanos/main/orquestador-soberano/SKILL.md) |
