@@ -13,6 +13,7 @@ Cubre:
 """
 
 import pytest
+import agents as agents_pkg
 from agents.protocol import (
     TaskRequest,
     TaskResult,
@@ -26,6 +27,9 @@ from agents.protocol import (
 from agents.registry import AgentRegistry, ECOSYSTEM_REPOS
 from agents.loader import SkillLoader
 from agents.micro.base_micro_agent import BaseMicroAgent
+from agents.micro.coherence_pulse_agent import CoherencePulseAgent
+from agents.micro.memory_manager_agent import MemoryManagerAgent
+from agents.micro.meta_hilo_grok_agent import MetaHiloGrokAgent
 from agents.macro.supervisor_agent import SupervisorAgent
 from agents.macro.resource_orchestrator import ResourceOrchestrator
 from agents.macro.status_monitor import StatusMonitor
@@ -160,6 +164,19 @@ class TestBaseMicroAgent:
         assert "skill_name" in d
         assert "health_score" in d
 
+    def test_handle_declared_error_result_as_failure(self):
+        class DeclarativeFailingSkill(ExampleTechnicalSkill):
+            def execute(self, context):
+                return {"status": "error", "error": "falló sin excepción", "q_impact": 0.0}
+
+        agent = BaseMicroAgent(skill=DeclarativeFailingSkill())
+        result = agent.handle(make_task_request(intent="forzar error"))
+        assert not result.succeeded
+        assert result.status == TaskStatus.ERROR
+        assert "falló sin excepción" in result.error
+        assert agent.total_tasks == 1
+        assert agent.successful_tasks == 0
+
 
 # ======================================================================= #
 # AGENT REGISTRY                                                           #
@@ -203,6 +220,11 @@ class TestAgentRegistry:
         assert len(memory_repos) == 1
         assert memory_repos[0]["repo"] == "el-dador-de-suenos-nucleus"
 
+    def test_ecosystem_map_is_defensive_copy(self):
+        eco = AgentRegistry.get_ecosystem_map()
+        eco["skills-soberanos"]["role"] = "mutated"
+        assert ECOSYSTEM_REPOS["skills-soberanos"]["role"] == "skills_hub"
+
     def test_summary_counts_correctly(self, registry, micro_technical):
         registry.register_micro(micro_technical)
         s = registry.summary()
@@ -239,6 +261,21 @@ class TestSkillLoader:
         loader.load_all()
         s = loader.summary()
         assert s["loaded"] >= 2
+
+    def test_specialized_agents_load_without_errors(self):
+        loader = SkillLoader(include_examples=False)
+        agents = loader.load_all()
+        assert loader.get_errors() == []
+        assert {agent.agent_id for agent in agents} == {
+            "micro:coherence-pulse",
+            "micro:memory-manager",
+            "micro:meta-hilo-grok",
+        }
+
+    def test_load_by_skill_name_returns_specialized_agent(self):
+        loader = SkillLoader(include_examples=False)
+        agent = loader.load_by_skill_name("memory-manager")
+        assert isinstance(agent, MemoryManagerAgent)
 
 
 # ======================================================================= #
@@ -386,3 +423,16 @@ class TestPriorityManager:
         s = pm.queue_status()
         assert s["queued"] == 1
         assert s["next_priority"] == 3
+
+
+# ======================================================================= #
+# EXPORTS                                                                  #
+# ======================================================================= #
+
+class TestPackageExports:
+    def test_top_level_package_exports_protocol_helpers_and_agents(self):
+        assert agents_pkg.make_task_request is make_task_request
+        assert agents_pkg.TaskStatus is TaskStatus
+        assert agents_pkg.CoherencePulseAgent is CoherencePulseAgent
+        assert agents_pkg.MemoryManagerAgent is MemoryManagerAgent
+        assert agents_pkg.MetaHiloGrokAgent is MetaHiloGrokAgent

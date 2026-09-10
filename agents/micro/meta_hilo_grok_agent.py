@@ -10,8 +10,8 @@ from __future__ import annotations
 
 from typing import Any, Dict
 
-from agents.micro.base_micro_agent import BaseMicroAgent
-from agents.protocol import TaskRequest
+from .base_micro_agent import BaseMicroAgent, load_skill_instance
+from ..protocol import TaskRequest
 
 
 class MetaHiloGrokAgent(BaseMicroAgent):
@@ -27,9 +27,16 @@ class MetaHiloGrokAgent(BaseMicroAgent):
     Requiere LLM (context["llm_engine"]).
     """
 
-    def __init__(self):
-        from skills.meta_hilo_grok.meta_hilo_grok_skill import MetaHiloGrokSkill  # type: ignore[import]
-        super().__init__(skill=MetaHiloGrokSkill(), agent_id="micro:meta-hilo-grok")
+    def __init__(self, skill: Any = None):
+        super().__init__(
+            skill=skill
+            or load_skill_instance(
+                class_name="MetaHiloGrokSkill",
+                module_candidates=("skills.meta_hilo_grok.meta_hilo_grok_skill",),
+                relative_file="skills/meta-hilo-grok/meta_hilo_grok_skill.py",
+            ),
+            agent_id="micro:meta-hilo-grok",
+        )
 
     def _build_context(self, request: TaskRequest) -> Dict[str, Any]:
         ctx = super()._build_context(request)

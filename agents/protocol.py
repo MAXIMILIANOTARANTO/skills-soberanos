@@ -12,9 +12,14 @@ from __future__ import annotations
 
 import uuid
 from dataclasses import dataclass, field
-from datetime import datetime
+from datetime import UTC, datetime
 from enum import Enum
-from typing import Any, Dict, List, Optional
+from typing import Any, Dict, Optional
+
+
+def utc_now_iso() -> str:
+    """Timestamp UTC consistente para todo el framework de agentes."""
+    return datetime.now(UTC).isoformat().replace("+00:00", "Z")
 
 
 # ======================================================================= #
@@ -67,7 +72,7 @@ class AgentMessage:
     type: MessageType
     payload: Dict[str, Any] = field(default_factory=dict)
     message_id: str = field(default_factory=lambda: str(uuid.uuid4()))
-    timestamp: str = field(default_factory=lambda: datetime.utcnow().isoformat() + "Z")
+    timestamp: str = field(default_factory=utc_now_iso)
     correlation_id: Optional[str] = None
 
     def to_dict(self) -> Dict[str, Any]:
@@ -98,7 +103,7 @@ class AgentEvent:
     data: Dict[str, Any] = field(default_factory=dict)
     severity: str = "info"
     event_id: str = field(default_factory=lambda: str(uuid.uuid4()))
-    timestamp: str = field(default_factory=lambda: datetime.utcnow().isoformat() + "Z")
+    timestamp: str = field(default_factory=utc_now_iso)
 
     def to_dict(self) -> Dict[str, Any]:
         return {
@@ -132,7 +137,7 @@ class TaskRequest:
     timeout_sec: int = 30
     requester_id: str = "macro"
     task_id: str = field(default_factory=lambda: str(uuid.uuid4()))
-    created_at: str = field(default_factory=lambda: datetime.utcnow().isoformat() + "Z")
+    created_at: str = field(default_factory=utc_now_iso)
 
     def to_dict(self) -> Dict[str, Any]:
         return {
@@ -168,7 +173,7 @@ class TaskResult:
     q_impact: float = 0.0
     error: Optional[str] = None
     duration_ms: int = 0
-    completed_at: str = field(default_factory=lambda: datetime.utcnow().isoformat() + "Z")
+    completed_at: str = field(default_factory=utc_now_iso)
 
     def to_dict(self) -> Dict[str, Any]:
         return {
@@ -240,3 +245,18 @@ def make_error_result(
         error=error,
         duration_ms=duration_ms,
     )
+
+
+__all__ = [
+    "AgentMessage",
+    "AgentEvent",
+    "TaskRequest",
+    "TaskResult",
+    "MessageType",
+    "TaskStatus",
+    "AgentTier",
+    "make_task_request",
+    "make_success_result",
+    "make_error_result",
+    "utc_now_iso",
+]

@@ -19,7 +19,7 @@ from pathlib import Path
 from typing import Any, Dict, List, Optional, Type
 
 from core.skill_base import Skill, ExampleTechnicalSkill, ExampleCognitiveSkill
-from agents.micro.base_micro_agent import BaseMicroAgent
+from .micro.base_micro_agent import BaseMicroAgent
 
 
 # Ruta raíz del proyecto (donde vive este archivo: agents/loader.py → un nivel arriba)
@@ -41,22 +41,16 @@ class SkillLoader:
     SKILLS_DIR: Path = _PROJECT_ROOT / "skills"
 
     # Mapeo explícito: nombre de skill → módulo Python + clase + agent class
-    _EXPLICIT_SKILLS: List[Dict[str, str]] = [
+    _EXPLICIT_AGENTS: List[Dict[str, str]] = [
         {
-            "skill_module": "skills.coherence-pulse.coherence_pulse_skill",
-            "skill_class": "CoherencePulseSkill",
             "agent_module": "agents.micro.coherence_pulse_agent",
             "agent_class": "CoherencePulseAgent",
         },
         {
-            "skill_module": "skills.memory-manager.memory_manager_skill",
-            "skill_class": "MemoryManagerSkill",
             "agent_module": "agents.micro.memory_manager_agent",
             "agent_class": "MemoryManagerAgent",
         },
         {
-            "skill_module": "skills.meta-hilo-grok.meta_hilo_grok_skill",
-            "skill_class": "MetaHiloGrokSkill",
             "agent_module": "agents.micro.meta_hilo_grok_agent",
             "agent_class": "MetaHiloGrokAgent",
         },
@@ -107,7 +101,7 @@ class SkillLoader:
 
     def _load_explicit_agents(self) -> None:
         """Intentar cargar los agentes micro pre-definidos."""
-        for entry in self._EXPLICIT_SKILLS:
+        for entry in self._EXPLICIT_AGENTS:
             try:
                 agent_mod = importlib.import_module(entry["agent_module"])
                 agent_cls: Type[BaseMicroAgent] = getattr(agent_mod, entry["agent_class"])

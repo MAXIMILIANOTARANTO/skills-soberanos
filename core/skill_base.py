@@ -5,7 +5,7 @@ OrchestratorEngine y CoherenceRouter, más dos skills de ejemplo para pruebas.
 """
 
 from typing import Dict, Any, List, Optional
-from datetime import datetime
+from datetime import UTC, datetime
 
 
 class Skill:
@@ -58,7 +58,7 @@ class Skill:
         if success:
             self.success_count += 1
         self.last_result = result
-        self.last_executed_at = datetime.utcnow().isoformat() + "Z"
+        self.last_executed_at = datetime.now(UTC).isoformat().replace("+00:00", "Z")
 
     def get_health_score(self) -> float:
         """
