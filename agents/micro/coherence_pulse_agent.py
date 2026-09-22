@@ -24,10 +24,11 @@ class CoherencePulseAgent(BaseMicroAgent):
     - Comparte estado con `el-iluminador-nucleo-soberano` para sincronización.
     """
 
-    def __init__(self, skill: Any = None):
+    def __init__(self, skill: "Skill | None" = None):
         super().__init__(
             skill=skill
-            or load_skill_instance(
+            if skill is not None
+            else load_skill_instance(
                 class_name="CoherencePulseSkill",
                 module_candidates=("skills.coherence_pulse.coherence_pulse_skill",),
                 relative_file="skills/coherence-pulse/coherence_pulse_skill.py",
