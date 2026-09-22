@@ -16,6 +16,7 @@ from __future__ import annotations
 from typing import Any, Dict, List, Optional
 
 from .base_macro_agent import BaseMacroAgent
+from ..cross_repo_feedback import CrossRepoFeedback
 from ..protocol import (
     TaskResult,
     make_task_request,
@@ -42,6 +43,7 @@ class SupervisorAgent(BaseMacroAgent):
         resource_orchestrator: Optional[Any] = None,
         status_monitor: Optional[Any] = None,
         priority_manager: Optional[Any] = None,
+        feedback_bridge: Optional[CrossRepoFeedback] = None,
     ):
         super().__init__(
             agent_id="macro:supervisor",
@@ -51,6 +53,8 @@ class SupervisorAgent(BaseMacroAgent):
         self.resource_orchestrator = resource_orchestrator
         self.status_monitor = status_monitor
         self.priority_manager = priority_manager
+        self.feedback_bridge = feedback_bridge or CrossRepoFeedback()
+        self.last_feedback: Optional[Dict[str, Any]] = None
 
     def handle(
         self, intent: str, context: Optional[Dict[str, Any]] = None
@@ -70,6 +74,8 @@ class SupervisorAgent(BaseMacroAgent):
             Dict con resultados sintetizados, errores y métricas.
         """
         context = context or {}
+        if self.last_feedback is not None:
+            context.setdefault("cross_repo_feedback", self.last_feedback)
         self._log("handle_start", {"intent": intent[:200]})
         timestamp_start = utc_now_iso()
 
@@ -121,6 +127,23 @@ class SupervisorAgent(BaseMacroAgent):
             "errors": len(errors),
             "total_q_impact": round(total_q_impact, 4),
             "status": "success" if not errors else ("partial" if successful else "error"),
+        }
+
+        feedback_envelope = self.feedback_bridge.build_envelope(
+            intent=intent,
+            response=response,
+            status=self.status_monitor.get_feedback_state()
+            if self.status_monitor
+            else {"health": response["status"]},
+        )
+        feedback_result = self.feedback_bridge.publish(
+            feedback_envelope,
+            adapters=context.get("cross_repo_adapters"),
+        )
+        self.last_feedback = feedback_envelope
+        response["cross_repo_feedback"] = {
+            "event_type": feedback_envelope["event_type"],
+            **feedback_result,
         }
 
         self._log("handle_end", {"status": response["status"]})

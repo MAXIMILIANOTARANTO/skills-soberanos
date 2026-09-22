@@ -13,7 +13,7 @@ Características:
 import json
 import hashlib
 import time
-from datetime import datetime
+from datetime import datetime, timedelta, timezone
 from typing import Optional, Dict, List, Tuple
 from pathlib import Path
 
@@ -119,7 +119,7 @@ class MemoryGitHubManager:
         Returns:
             Tupla (archivo_path, hash_actual)
         """
-        timestamp_iso = datetime.utcnow().isoformat() + "Z"
+        timestamp_iso = datetime.now(timezone.utc).isoformat().replace("+00:00", "Z")
         timestamp_file = timestamp_iso.replace(':', '-')
         
         # Construir data
@@ -162,58 +162,65 @@ class MemoryGitHubManager:
         """
         try:
             contents = self.repo.get_contents(self.conversations_path)
-            
-            if not contents or len(contents) == 0:
+
+            if not contents:
                 return ""
-            
+
+            if not isinstance(contents, list):
+                contents = [contents]
+
             # Obtener el archivo más reciente (por nombre)
-            files = sorted(contents, key=lambda x: x.name, reverse=True)
+            files = sorted(contents, key=lambda x: getattr(x, "name", ""), reverse=True)
             last_file = files[0]
-            
+
             data = json.loads(last_file.decoded_content)
             return data.get("current_hash", "")
-        
+
         except Exception as e:
             print(f"⚠️ Could not retrieve last hash: {e}")
             return ""
     
     def load_memory(self, days_back: int = 7) -> List[dict]:
         """
-        Cargar conversaciones de los últimos N días
-        
+        Cargar conversaciones de los últimos N días.
+
         Args:
-            days_back: Días hacia atrás a recuperar
-            
+            days_back: Días hacia atrás a recuperar.
+
         Returns:
-            Lista de conversaciones (más recientes primero)
+            Lista de conversaciones (más recientes primero).
         """
         try:
+            days_back = max(0, int(days_back))
+            cutoff_time = datetime.now(timezone.utc) - timedelta(days=days_back)
             contents = self.repo.get_contents(self.conversations_path)
-            
+
             if not contents:
                 return []
-            
+
+            if not isinstance(contents, list):
+                contents = [contents]
+
             # Ordenar por nombre (timestamp)
-            files = sorted(contents, key=lambda x: x.name, reverse=True)
-            
+            files = sorted(contents, key=lambda x: getattr(x, "name", ""), reverse=True)
+
             memories = []
-            cutoff_time = datetime.utcnow().replace(
-                day=datetime.utcnow().day - days_back
-            )
-            
             for file in files:
                 try:
                     data = json.loads(file.decoded_content)
-                    file_time = datetime.fromisoformat(data["timestamp"].replace("Z", "+00:00"))
-                    
+                    timestamp = data.get("timestamp")
+                    if not isinstance(timestamp, str):
+                        continue
+
+                    file_time = datetime.fromisoformat(timestamp.replace("Z", "+00:00"))
                     if file_time >= cutoff_time:
                         memories.append(data)
-                
-                except Exception as e:
-                    print(f"⚠️ Failed to parse {file.name}: {e}")
-            
+
+                except (TypeError, ValueError, json.JSONDecodeError) as e:
+                    print(f"⚠️ Failed to parse {getattr(file, 'name', '<unknown>')}: {e}")
+
             return memories
-        
+
         except Exception as e:
             print(f"❌ Failed to load memory: {e}")
             return []
@@ -252,8 +259,8 @@ class MemoryGitHubManager:
         Returns:
             Path del archivo creado
         """
-        timestamp = datetime.utcnow().isoformat() + "Z"
-        
+        timestamp = datetime.now(timezone.utc).isoformat().replace("+00:00", "Z")
+
         learning_data = {
             "finding": finding,
             "confidence": confidence,
@@ -290,7 +297,7 @@ class MemoryGitHubManager:
         Returns:
             Path del archivo
         """
-        timestamp = datetime.utcnow().isoformat() + "Z"
+        timestamp = datetime.now(timezone.utc).isoformat().replace("+00:00", "Z")
         file_path = f"{self.persistent_path}/{state_name}_{timestamp.replace(':', '-')}.json"
         
         state_data["persistent_at"] = timestamp

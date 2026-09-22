@@ -41,6 +41,7 @@ from .protocol import (
     make_task_request,
 )
 from .registry import AgentRegistry, ECOSYSTEM_REPOS, get_global_registry
+from .cross_repo_feedback import CrossRepoFeedback
 from .loader import SkillLoader
 from .micro import (
     BaseMicroAgent,
@@ -72,6 +73,7 @@ __all__ = [
     "AgentRegistry",
     "ECOSYSTEM_REPOS",
     "get_global_registry",
+    "CrossRepoFeedback",
     "SkillLoader",
     # Micro
     "BaseMicroAgent",

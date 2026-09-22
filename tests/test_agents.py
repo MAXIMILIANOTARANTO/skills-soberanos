@@ -25,6 +25,7 @@ from agents.protocol import (
     make_error_result,
 )
 from agents.registry import AgentRegistry, ECOSYSTEM_REPOS
+from agents.cross_repo_feedback import CrossRepoFeedback
 from agents.loader import SkillLoader
 from agents.micro.base_micro_agent import BaseMicroAgent
 from agents.micro.coherence_pulse_agent import CoherencePulseAgent
@@ -298,6 +299,26 @@ class TestSupervisorAgent:
         assert result["successful"] == 0
         assert result["agents_activated"] == []
 
+    def test_handle_publishes_cross_repo_feedback(self, supervisor):
+        published = []
+
+        result = supervisor.handle(
+            "análisis técnico",
+            context={
+                "cross_repo_adapters": {
+                    "el-dador-de-suenos-nucleus": published.append,
+                }
+            },
+        )
+
+        assert result["cross_repo_feedback"]["published"] == [
+            "el-dador-de-suenos-nucleus"
+        ]
+        assert published[0]["source_repo"] == "skills-soberanos"
+        assert supervisor.last_feedback["event_type"] == (
+            "skills_soberanos.execution_feedback"
+        )
+
     def test_handle_reports_q_impact(self, supervisor):
         result = supervisor.handle("análisis técnico")
         assert isinstance(result["total_q_impact"], float)
@@ -368,6 +389,12 @@ class TestStatusMonitor:
         monitor.record_run(intent="test", results=[result])
         assert not monitor.is_degraded()
 
+    def test_feedback_state_is_machine_readable(self):
+        monitor = StatusMonitor()
+        state = monitor.get_feedback_state()
+        assert state["health"] == "UNKNOWN"
+        assert state["degraded"] is False
+
     def test_health_critical_on_all_errors(self):
         monitor = StatusMonitor()
         error_result = make_error_result("t1", "micro:x", "err")
@@ -375,6 +402,17 @@ class TestStatusMonitor:
             monitor.record_run(intent="test", results=[error_result])
         s = monitor.get_summary()
         assert s["health"] == "CRITICAL"
+
+
+class TestCrossRepoFeedback:
+    def test_rejects_unknown_and_invalid_adapters(self):
+        bridge = CrossRepoFeedback()
+        result = bridge.publish(
+            {"event_type": "test"},
+            adapters={"unknown-repo": lambda _: None, "grok-nodo-iluminado": None},
+        )
+        assert result["published"] == []
+        assert len(result["errors"]) == 2
 
 
 # ======================================================================= #
