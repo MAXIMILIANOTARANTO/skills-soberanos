@@ -123,6 +123,7 @@ class BaseMicroAgent:
             duration_ms = int(time.time() * 1000) - start_ms
             error_message = self._extract_error(normalized_output)
             if error_message:
+                self.skill.update_health(False, normalized_output)
                 return make_error_result(
                     task_id=request.task_id,
                     agent_id=self.agent_id,
@@ -143,6 +144,8 @@ class BaseMicroAgent:
 
         except Exception as exc:  # noqa: BLE001
             duration_ms = int(time.time() * 1000) - start_ms
+            error_output = {"status": "error", "error": str(exc), "q_impact": 0.0}
+            self.skill.update_health(False, error_output)
             return make_error_result(
                 task_id=request.task_id,
                 agent_id=self.agent_id,

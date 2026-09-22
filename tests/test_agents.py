@@ -177,6 +177,21 @@ class TestBaseMicroAgent:
         assert "falló sin excepción" in result.error
         assert agent.total_tasks == 1
         assert agent.successful_tasks == 0
+        assert agent.get_health_score() == 0.0
+        assert agent.is_healthy() is False
+
+    def test_handle_exception_updates_skill_health(self):
+        class ExceptionFailingSkill(ExampleTechnicalSkill):
+            def execute(self, context):
+                raise RuntimeError("falló con excepción")
+
+        agent = BaseMicroAgent(skill=ExceptionFailingSkill())
+        result = agent.handle(make_task_request(intent="forzar excepción"))
+
+        assert not result.succeeded
+        assert "falló con excepción" in result.error
+        assert agent.get_health_score() == 0.0
+        assert agent.is_healthy() is False
 
 
 # ======================================================================= #
