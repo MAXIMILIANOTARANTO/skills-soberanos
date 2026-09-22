@@ -31,10 +31,11 @@ class MemoryManagerAgent(BaseMicroAgent):
 
     DEFAULT_OPERATION = "stats"
 
-    def __init__(self, skill: Any = None):
+    def __init__(self, skill: "Skill | None" = None):
         super().__init__(
             skill=skill
-            or load_skill_instance(
+            if skill is not None
+            else load_skill_instance(
                 class_name="MemoryManagerSkill",
                 module_candidates=("skills.memory_manager.memory_manager_skill",),
                 relative_file="skills/memory-manager/memory_manager_skill.py",
