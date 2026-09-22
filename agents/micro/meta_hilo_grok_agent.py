@@ -27,10 +27,11 @@ class MetaHiloGrokAgent(BaseMicroAgent):
     Requiere LLM (context["llm_engine"]).
     """
 
-    def __init__(self, skill: Any = None):
+    def __init__(self, skill: "Skill | None" = None):
         super().__init__(
             skill=skill
-            or load_skill_instance(
+            if skill is not None
+            else load_skill_instance(
                 class_name="MetaHiloGrokSkill",
                 module_candidates=("skills.meta_hilo_grok.meta_hilo_grok_skill",),
                 relative_file="skills/meta-hilo-grok/meta_hilo_grok_skill.py",
