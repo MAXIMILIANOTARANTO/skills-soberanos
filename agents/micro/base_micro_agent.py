@@ -63,7 +63,11 @@ def load_skill_instance(
             if spec and spec.loader:
                 module = importlib.util.module_from_spec(spec)
                 sys.modules[module_name] = module
-                spec.loader.exec_module(module)  # type: ignore[union-attr]
+                try:
+                    spec.loader.exec_module(module)  # type: ignore[union-attr]
+                except Exception:
+                    sys.modules.pop(module_name, None)
+                    raise
                 skill_cls = getattr(module, class_name, None)
                 if isinstance(skill_cls, type) and issubclass(skill_cls, Skill):
                     return skill_cls()
