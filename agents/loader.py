@@ -40,7 +40,7 @@ class SkillLoader:
 
     SKILLS_DIR: Path = _PROJECT_ROOT / "skills"
 
-    # Mapeo explícito: nombre de skill → módulo Python + clase + agent class
+    # Mapeo explícito: micro-agentes especializados → módulo Python + clase
     _EXPLICIT_AGENTS: List[Dict[str, str]] = [
         {
             "agent_module": "agents.micro.coherence_pulse_agent",
