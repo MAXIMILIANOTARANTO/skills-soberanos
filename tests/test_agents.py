@@ -13,6 +13,7 @@ Cubre:
 """
 
 import pytest
+import agents as agents_pkg
 from agents.protocol import (
     TaskRequest,
     TaskResult,
@@ -24,8 +25,12 @@ from agents.protocol import (
     make_error_result,
 )
 from agents.registry import AgentRegistry, ECOSYSTEM_REPOS
+from agents.cross_repo_feedback import CrossRepoFeedback
 from agents.loader import SkillLoader
 from agents.micro.base_micro_agent import BaseMicroAgent
+from agents.micro.coherence_pulse_agent import CoherencePulseAgent
+from agents.micro.memory_manager_agent import MemoryManagerAgent
+from agents.micro.meta_hilo_grok_agent import MetaHiloGrokAgent
 from agents.macro.supervisor_agent import SupervisorAgent
 from agents.macro.resource_orchestrator import ResourceOrchestrator
 from agents.macro.status_monitor import StatusMonitor
@@ -160,6 +165,34 @@ class TestBaseMicroAgent:
         assert "skill_name" in d
         assert "health_score" in d
 
+    def test_handle_declared_error_result_as_failure(self):
+        class DeclarativeFailingSkill(ExampleTechnicalSkill):
+            def execute(self, context):
+                return {"status": "error", "error": "falló sin excepción", "q_impact": 0.0}
+
+        agent = BaseMicroAgent(skill=DeclarativeFailingSkill())
+        result = agent.handle(make_task_request(intent="forzar error"))
+        assert not result.succeeded
+        assert result.status == TaskStatus.ERROR
+        assert "falló sin excepción" in result.error
+        assert agent.total_tasks == 1
+        assert agent.successful_tasks == 0
+        assert agent.get_health_score() == 0.0
+        assert agent.is_healthy() is False
+
+    def test_handle_exception_updates_skill_health(self):
+        class ExceptionFailingSkill(ExampleTechnicalSkill):
+            def execute(self, context):
+                raise RuntimeError("falló con excepción")
+
+        agent = BaseMicroAgent(skill=ExceptionFailingSkill())
+        result = agent.handle(make_task_request(intent="forzar excepción"))
+
+        assert not result.succeeded
+        assert "falló con excepción" in result.error
+        assert agent.get_health_score() == 0.0
+        assert agent.is_healthy() is False
+
 
 # ======================================================================= #
 # AGENT REGISTRY                                                           #
@@ -203,6 +236,11 @@ class TestAgentRegistry:
         assert len(memory_repos) == 1
         assert memory_repos[0]["repo"] == "el-dador-de-suenos-nucleus"
 
+    def test_ecosystem_map_is_defensive_copy(self):
+        eco = AgentRegistry.get_ecosystem_map()
+        eco["skills-soberanos"]["role"] = "mutated"
+        assert ECOSYSTEM_REPOS["skills-soberanos"]["role"] == "skills_hub"
+
     def test_summary_counts_correctly(self, registry, micro_technical):
         registry.register_micro(micro_technical)
         s = registry.summary()
@@ -240,6 +278,21 @@ class TestSkillLoader:
         s = loader.summary()
         assert s["loaded"] >= 2
 
+    def test_specialized_agents_load_without_errors(self):
+        loader = SkillLoader(include_examples=False)
+        agents = loader.load_all()
+        assert loader.get_errors() == []
+        assert {agent.agent_id for agent in agents} == {
+            "micro:coherence-pulse",
+            "micro:memory-manager",
+            "micro:meta-hilo-grok",
+        }
+
+    def test_load_by_skill_name_returns_specialized_agent(self):
+        loader = SkillLoader(include_examples=False)
+        agent = loader.load_by_skill_name("memory-manager")
+        assert isinstance(agent, MemoryManagerAgent)
+
 
 # ======================================================================= #
 # SUPERVISOR AGENT                                                         #
@@ -260,6 +313,26 @@ class TestSupervisorAgent:
         result = sv.handle("test")
         assert result["successful"] == 0
         assert result["agents_activated"] == []
+
+    def test_handle_publishes_cross_repo_feedback(self, supervisor):
+        published = []
+
+        result = supervisor.handle(
+            "análisis técnico",
+            context={
+                "cross_repo_adapters": {
+                    "el-dador-de-suenos-nucleus": published.append,
+                }
+            },
+        )
+
+        assert result["cross_repo_feedback"]["published"] == [
+            "el-dador-de-suenos-nucleus"
+        ]
+        assert published[0]["source_repo"] == "skills-soberanos"
+        assert supervisor.last_feedback["event_type"] == (
+            "skills_soberanos.execution_feedback"
+        )
 
     def test_handle_reports_q_impact(self, supervisor):
         result = supervisor.handle("análisis técnico")
@@ -331,6 +404,12 @@ class TestStatusMonitor:
         monitor.record_run(intent="test", results=[result])
         assert not monitor.is_degraded()
 
+    def test_feedback_state_is_machine_readable(self):
+        monitor = StatusMonitor()
+        state = monitor.get_feedback_state()
+        assert state["health"] == "UNKNOWN"
+        assert state["degraded"] is False
+
     def test_health_critical_on_all_errors(self):
         monitor = StatusMonitor()
         error_result = make_error_result("t1", "micro:x", "err")
@@ -338,6 +417,17 @@ class TestStatusMonitor:
             monitor.record_run(intent="test", results=[error_result])
         s = monitor.get_summary()
         assert s["health"] == "CRITICAL"
+
+
+class TestCrossRepoFeedback:
+    def test_rejects_unknown_and_invalid_adapters(self):
+        bridge = CrossRepoFeedback()
+        result = bridge.publish(
+            {"event_type": "test"},
+            adapters={"unknown-repo": lambda _: None, "grok-nodo-iluminado": None},
+        )
+        assert result["published"] == []
+        assert len(result["errors"]) == 2
 
 
 # ======================================================================= #
@@ -386,3 +476,16 @@ class TestPriorityManager:
         s = pm.queue_status()
         assert s["queued"] == 1
         assert s["next_priority"] == 3
+
+
+# ======================================================================= #
+# EXPORTS                                                                  #
+# ======================================================================= #
+
+class TestPackageExports:
+    def test_top_level_package_exports_protocol_helpers_and_agents(self):
+        assert agents_pkg.make_task_request is make_task_request
+        assert agents_pkg.TaskStatus is TaskStatus
+        assert agents_pkg.CoherencePulseAgent is CoherencePulseAgent
+        assert agents_pkg.MemoryManagerAgent is MemoryManagerAgent
+        assert agents_pkg.MetaHiloGrokAgent is MetaHiloGrokAgent

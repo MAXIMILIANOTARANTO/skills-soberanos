@@ -17,12 +17,14 @@ Ecosistema de repositorios:
 
 from __future__ import annotations
 
-from datetime import datetime
+from copy import deepcopy
 from typing import Any, Dict, List, Optional, TYPE_CHECKING
 
+from .protocol import utc_now_iso
+
 if TYPE_CHECKING:
-    from agents.micro.base_micro_agent import BaseMicroAgent
-    from agents.macro.base_macro_agent import BaseMacroAgent
+    from .micro.base_micro_agent import BaseMicroAgent
+    from .macro.base_macro_agent import BaseMacroAgent
 
 
 # ======================================================================= #
@@ -123,7 +125,7 @@ class AgentRegistry:
         self._micro: Dict[str, "BaseMicroAgent"] = {}
         self._macro: Dict[str, "BaseMacroAgent"] = {}
         self._events: List[Dict[str, Any]] = []
-        self._created_at: str = datetime.utcnow().isoformat() + "Z"
+        self._created_at: str = utc_now_iso()
 
     # ------------------------------------------------------------------ #
     # REGISTRO                                                             #
@@ -192,17 +194,22 @@ class AgentRegistry:
     @staticmethod
     def get_ecosystem_map() -> Dict[str, Dict[str, str]]:
         """Devolver el mapa completo del ecosistema de repositorios."""
-        return ECOSYSTEM_REPOS
+        return deepcopy(ECOSYSTEM_REPOS)
 
     @staticmethod
     def get_repo_info(repo_key: str) -> Optional[Dict[str, str]]:
         """Obtener información de un repositorio específico del ecosistema."""
-        return ECOSYSTEM_REPOS.get(repo_key)
+        repo_info = ECOSYSTEM_REPOS.get(repo_key)
+        return deepcopy(repo_info) if repo_info else None
 
     @staticmethod
     def get_repos_by_role(role: str) -> List[Dict[str, str]]:
         """Filtrar repositorios del ecosistema por rol."""
-        return [info for info in ECOSYSTEM_REPOS.values() if info.get("role") == role]
+        return [
+            deepcopy(info)
+            for info in ECOSYSTEM_REPOS.values()
+            if info.get("role") == role
+        ]
 
     # ------------------------------------------------------------------ #
     # ESTADO Y RESUMEN                                                     #
@@ -217,14 +224,14 @@ class AgentRegistry:
             "micro_agent_ids": list(self._micro.keys()),
             "macro_agent_ids": list(self._macro.keys()),
             "ecosystem_repos": len(ECOSYSTEM_REPOS),
-            "ecosystem_roles": list({r["role"] for r in ECOSYSTEM_REPOS.values()}),
+            "ecosystem_roles": sorted({r["role"] for r in ECOSYSTEM_REPOS.values()}),
             "total_events": len(self._events),
         }
 
     def _log_event(self, event_type: str, data: Dict[str, Any]) -> None:
         self._events.append(
             {
-                "timestamp": datetime.utcnow().isoformat() + "Z",
+                "timestamp": utc_now_iso(),
                 "event_type": event_type,
                 "data": data,
             }

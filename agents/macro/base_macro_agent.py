@@ -11,10 +11,9 @@ Un macro-agente:
 from __future__ import annotations
 
 from abc import ABC, abstractmethod
-from datetime import datetime
 from typing import Any, Dict, List, Optional
 
-from agents.protocol import TaskRequest, TaskResult, AgentTier
+from ..protocol import AgentTier, utc_now_iso
 
 
 class BaseMacroAgent(ABC):
@@ -29,7 +28,7 @@ class BaseMacroAgent(ABC):
     def __init__(self, agent_id: str, description: str = ""):
         self.agent_id: str = agent_id
         self.description: str = description
-        self.created_at: str = datetime.utcnow().isoformat() + "Z"
+        self.created_at: str = utc_now_iso()
         self.session_log: List[Dict[str, Any]] = []
 
     # ------------------------------------------------------------------ #
@@ -56,7 +55,7 @@ class BaseMacroAgent(ABC):
     def _log(self, event: str, data: Optional[Dict[str, Any]] = None) -> None:
         self.session_log.append(
             {
-                "timestamp": datetime.utcnow().isoformat() + "Z",
+                "timestamp": utc_now_iso(),
                 "agent_id": self.agent_id,
                 "event": event,
                 "data": data or {},

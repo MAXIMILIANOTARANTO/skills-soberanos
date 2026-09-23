@@ -10,11 +10,10 @@ Responsabilidades:
 
 from __future__ import annotations
 
-from datetime import datetime
 from typing import Any, Dict, List, Optional
 
-from agents.macro.base_macro_agent import BaseMacroAgent
-from agents.protocol import TaskResult
+from .base_macro_agent import BaseMacroAgent
+from ..protocol import TaskResult, utc_now_iso
 
 
 class StatusMonitor(BaseMacroAgent):
@@ -55,7 +54,7 @@ class StatusMonitor(BaseMacroAgent):
         total_q = sum(r.q_impact for r in results)
 
         entry = {
-            "timestamp": datetime.utcnow().isoformat() + "Z",
+            "timestamp": utc_now_iso(),
             "intent": intent[:200],
             "total_tasks": len(results),
             "successful": successful,
@@ -98,3 +97,14 @@ class StatusMonitor(BaseMacroAgent):
         """Retorna True si el error rate reciente supera el threshold."""
         summary = self.get_summary()
         return summary.get("avg_error_rate", 0.0) > threshold
+
+    def get_feedback_state(self) -> Dict[str, Any]:
+        """Return a compact state envelope for cross-repository consumers."""
+        summary = self.get_summary()
+        return {
+            "health": summary.get("health", "UNKNOWN"),
+            "total_runs": summary.get("total_runs", 0),
+            "avg_error_rate": summary.get("avg_error_rate", 0.0),
+            "avg_q_impact": summary.get("avg_q_impact", 0.0),
+            "degraded": self.is_degraded(),
+        }
