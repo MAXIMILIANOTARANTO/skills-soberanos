@@ -230,11 +230,34 @@ class TestAgentRegistry:
         assert "ia-specialist-agent" in eco
         assert "tcu-unified-coherence-theory" in eco
         assert "el-iluminador-nucleo-soberano" in eco
+        assert "nucleo-ara" in eco
+        assert "nucleo-semilla-dador-de-recuerdos" in eco
+        assert "sovereign-nexus" in eco
+        assert "core-flow-orchestrator" in eco
+        assert "langgraph-autonomous-agents" in eco
+        assert "ai-browser-platform" in eco
+        assert "TCU-Teoria-Coherencia-Unificada" in eco
+        assert "Motor-TUC" in eco
 
     def test_get_repos_by_role(self):
         memory_repos = AgentRegistry.get_repos_by_role("memory_nucleus")
         assert len(memory_repos) == 1
         assert memory_repos[0]["repo"] == "el-dador-de-suenos-nucleus"
+
+    def test_core_ecosystem_roles_are_registered(self):
+        roles = {
+            repo["role"] for repo in AgentRegistry.get_ecosystem_map().values()
+        }
+        assert {
+            "blockchange_memory",
+            "seed_memory",
+            "ecosystem_gateway",
+            "flow_orchestrator",
+            "agent_orchestration",
+            "browser_tooling",
+            "tcu_empirical",
+            "tcu_engine",
+        }.issubset(roles)
 
     def test_ecosystem_map_is_defensive_copy(self):
         eco = AgentRegistry.get_ecosystem_map()

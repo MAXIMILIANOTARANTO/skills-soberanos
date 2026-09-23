@@ -78,6 +78,14 @@ Este repositorio es el **hub de skills y agentes** del ecosistema. El directorio
 | `ia-specialist-agent` | `specialist_agents` | specialized_roles, multi_agent_coordination | skills, memory |
 | `tcu-unified-coherence-theory` | `tcu_theory` | q_formula, coherence_metrics | ecosystem_state |
 | `el-iluminador-nucleo-soberano` | `fractal_memory` | fractal_memory, self_audit, coherence_sync | ecosystem_state, agent_events |
+| `nucleo-ara` | `blockchange_memory` | multimodal_memory, blockchange_log, memory_gateway | skills_output, conversation_events |
+| `nucleo-semilla-dador-de-recuerdos` | `seed_memory` | seed_memory, initial_context, autonomous_bootstrap | ecosystem_state, foundational_records |
+| `sovereign-nexus` | `ecosystem_gateway` | chat_gateway, persistence_gateway, github_integration | skills_output, cross_repo_feedback |
+| `core-flow-orchestrator` | `flow_orchestrator` | flow_control, intent_routing, creation_pipeline | user_intent, specialist_results, coherence_state |
+| `langgraph-autonomous-agents` | `agent_orchestration` | graph_orchestration, agent_tools, structured_protocols | skills, tasks, cross_repo_feedback |
+| `ai-browser-platform` | `browser_tooling` | browser_actions, persistent_profiles, web_automation | specialist_tasks, navigation_intents |
+| `TCU-Teoria-Coherencia-Unificada` | `tcu_empirical` | empirical_validation, coherence_datasets, tcu_findings | ecosystem_measurements, q_predictions |
+| `Motor-TUC` | `tcu_engine` | tcu_runtime, coherence_processing, theory_execution | tcu_theory, coherence_events |
 
 ### Flujo de datos
 
@@ -91,6 +99,9 @@ skills-soberanos  (core/coherence_meter.py calcula Q(t))
        ▼
 el-dador-de-suenos-nucleus  (memoria maestra persistente)
        │
+       ├── nucleo-ara  (memoria Blockchange multimodal)
+       └── nucleo-semilla-dador-de-recuerdos  (contexto semilla)
+       │
        ▼
 el-iluminador-nucleo-soberano  (memoria fractal + auto-auditoría)
        │  estado sincronizado
@@ -99,6 +110,15 @@ grok-nodo-iluminado  → insights para MetaHiloGrokAgent
        │
        ▼
 ia-specialist-agent  (consume skills + memory para tareas complejas)
+       │
+       ├── core-flow-orchestrator  (flujo Habla-Pregunta-Imagine)
+       ├── langgraph-autonomous-agents  (orquestación multiagente)
+       └── ai-browser-platform  (herramientas de navegación)
+
+tcu-unified-coherence-theory
+       │
+       ├── TCU-Teoria-Coherencia-Unificada  (validación empírica)
+       └── Motor-TUC  (ejecución de la teoría)
 ```
 
 ### Framework de Agentes (`agents/`)
