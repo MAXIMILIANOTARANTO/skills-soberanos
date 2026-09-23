@@ -443,6 +443,23 @@ class TestStatusMonitor:
 
 
 class TestCrossRepoFeedback:
+    def test_envelope_is_identifiable_and_hash_chained(self):
+        bridge = CrossRepoFeedback()
+        first = bridge.build_envelope(
+            intent="primera tarea",
+            response={"results": [{"task_id": "task-1"}]},
+        )
+        second = bridge.build_envelope(
+            intent="segunda tarea",
+            response={"results": [{"task_id": "task-2"}]},
+        )
+
+        assert first["event_id"]
+        assert first["task_ids"] == ["task-1"]
+        assert first["previous_hash"] == ""
+        assert first["current_hash"] == bridge._calculate_hash(first)
+        assert second["previous_hash"] == first["current_hash"]
+
     def test_rejects_unknown_and_invalid_adapters(self):
         bridge = CrossRepoFeedback()
         result = bridge.publish(
