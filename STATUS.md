@@ -30,12 +30,12 @@ Motor de orquestación ejecutable localmente:
 
 ## Qué NO existe (pese a lo que decían versiones previas de esta documentación)
 
-- `.github/workflows/` — no hay ningún workflow de GitHub Actions en este repo.
+- `.github/workflows/ci.yml` — existe y corre pytest (3.11/3.12) + validación de estructura de skills TUC.
 - `ui/` — no hay dashboard HTML.
 - `scripts/` — no hay `setup_local.sh`, `generate_dashboard_data.py` ni `check_macro_crisis.py`.
 - `run_local_pulse.py` — no existe (el harness real y único es `run_pulse.py`).
 - `ROADMAP.md` — no existe.
-- `.github/workflows/`, `ui/`, `scripts/` siguen sin existir (ver arriba).
+- `ui/`, `scripts/` siguen sin existir (ver arriba).
 
 ## Tests
 
