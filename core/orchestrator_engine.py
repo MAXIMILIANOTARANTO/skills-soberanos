@@ -89,7 +89,20 @@ class OrchestratorEngine:
         context["llm_engine"] = self.llm_engine
         context["memory"] = self.memory_manager
         context["coherence_meter"] = self.coherence_meter
-        context["current_q"] = context.get("current_q", 0.7)  # Default
+        if "current_q" not in context or context.get("current_q") is None:
+            resonance_scores = self.evaluate_resonance(intent)
+            return {
+                "intent": intent[:200],
+                "hueco": "Q ausente. No se poda ni se ejecuta.",
+                "resonance_scores": [
+                    {"skill": s.name, "resonance": round(score, 3)}
+                    for s, score in resonance_scores[:10]
+                ],
+                "activated_skills": [],
+                "execution_results": [],
+                "q_impact_total": None,
+            }
+        context["current_q"] = context["current_q"]
         
         timestamp_start = datetime.utcnow().isoformat() + "Z"
         
@@ -107,7 +120,7 @@ class OrchestratorEngine:
             above_threshold = [resonance_scores[0]]
         
         # PASO 3: Coherence Router decide cuáles ejecutar
-        current_q = context.get("current_q", 0.7)
+        current_q = context["current_q"]
         skills_to_execute = self.router.route(above_threshold, current_q)
         
         # PASO 4: Ejecutar skills

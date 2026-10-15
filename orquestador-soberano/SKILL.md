@@ -32,7 +32,7 @@ description: Skill primario de gobernanza que conecta y coordina el resto de los
 1. Activar `pre-cognitive-neuronal-core`
 2. Consultar `estudio-sistemico` si hay nuevo conocimiento
 3. Usar `github-external-token-memory` para offload de contexto largo
-4. `tcu-detector` (skill aún no creado en este repo) aplicaría aquí para analizar coherencia de sistema cuando exista
+4. `tcu-detector` (existe en este repo: `tcu-detector/SKILL.md`) para analizar coherencia de sistema
 5. Registrar todo en `memoria-blockchange-persistente`
 6. Evaluar coherencia global con `core/coherence_meter.py` (implementado en la capa de runtime Python del ecosistema, fuera de alcance de este skill de prompt)
 

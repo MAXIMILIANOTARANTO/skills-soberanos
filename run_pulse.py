@@ -126,7 +126,7 @@ class EcosystemPulse:
             # Construir contexto
             context = {
                 "summary": "Estado del ecosistema soberano en GitHub",
-                "current_q": 0.75 if self.coherence_meter is None else None
+                "current_q": None
             }
             
             # Ejecutar
