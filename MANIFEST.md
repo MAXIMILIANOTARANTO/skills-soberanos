@@ -1,7 +1,7 @@
 # MANIFEST - Ecosistema Soberano de Skills
 
 **Repositorio Maestro:** skills-soberanos
-**Fecha de actualización:** 2026-09-05
+**Fecha de actualización:** 2026-10-29
 **Convención de skills:** ver `ecosistema-orchestrator/references/ecosistema-guidelines.md` (documento canónico).
 **Prompt de onboarding para cualquier modelo de IA:** ver [`PROMPT_UNIVERSAL.md`](PROMPT_UNIVERSAL.md).
 
@@ -26,6 +26,8 @@ Al agregar un skill nuevo, su URL se arma reemplazando `<carpeta-del-skill>` por
 | `lengua-situada` | ✅ | ✅ | Disciplina de habla: no sellar de fábrica, caras de la palabra, paradigma, conclusion del intercambio. | [SKILL.md](https://raw.githubusercontent.com/MAXIMILIANOTARANTO/skills-soberanos/main/lengua-situada/SKILL.md) |
 | `memoria-blockchange-persistente` | ✅ | — | Memoria append-only encadenada de lecciones, incidentes y decisiones. | [SKILL.md](https://raw.githubusercontent.com/MAXIMILIANOTARANTO/skills-soberanos/main/memoria-blockchange-persistente/SKILL.md) |
 | `meta-hilo-grok` | ✅ | ✅ | Analiza hilos de conversación, extrae objetivos, crea métodos, detecta gaps de skills. | [SKILL.md](https://raw.githubusercontent.com/MAXIMILIANOTARANTO/skills-soberanos/main/meta-hilo-grok/SKILL.md) |
+| `openrouter-proceso` | ✅ | — | Orquestador de procesos multi-paso usando OpenRouter free. Presupuesta requests, elige estrategia y captura resultados hacia el Núcleo Ara. | [SKILL.md](https://raw.githubusercontent.com/MAXIMILIANOTARANTO/skills-soberanos/main/openrouter-proceso/SKILL.md) |
+| `openrouter-web-free` | ✅ | — | Especialista en OpenRouter versión web free (playground). Selección de modelos free, Free Models Router, límites de cuota y comparación side-by-side. | [SKILL.md](https://raw.githubusercontent.com/MAXIMILIANOTARANTO/skills-soberanos/main/openrouter-web-free/SKILL.md) |
 | `orquestador-soberano` | ✅ | — | Sistema nervioso central: decide qué skills activar y en qué orden. | [SKILL.md](https://raw.githubusercontent.com/MAXIMILIANOTARANTO/skills-soberanos/main/orquestador-soberano/SKILL.md) |
 | `pre-cognitive-neuronal-core` | ✅ | — | Punto de partida neuronal: predictive coding, active inference, dual-stream. | [SKILL.md](https://raw.githubusercontent.com/MAXIMILIANOTARANTO/skills-soberanos/main/pre-cognitive-neuronal-core/SKILL.md) |
 | `rigorous-web-aportante` | ✅ | — | Extrae conocimiento externo de alta calidad, con filtro riguroso. | [SKILL.md](https://raw.githubusercontent.com/MAXIMILIANOTARANTO/skills-soberanos/main/rigorous-web-aportante/SKILL.md) |
@@ -64,88 +66,3 @@ Varios `SKILL.md` de este repo mencionan skills que viven en otra parte de la bi
 ## Principio Rector
 
 La función principal del ecosistema es **crear**. Cualquier elemento que desvíe energía de la creación real debe ser analizado por `inmunidad-soberana`.
-## Integración Cross-Repo: Ecosistema de Repositorios
-
-Este repositorio es el **hub de skills y agentes** del ecosistema. El directorio `agents/` implementa el framework jerárquico (macro-orquestadores + micro-agentes) como una capa Python **importable y testeable de forma local**. El mapa cross-repo de abajo documenta relaciones conceptuales del ecosistema; no implica que el runtime necesite clonar o acoplarse directamente a esos repositorios para cargar el framework.
-
-### Mapa de Repositorios
-
-| Repositorio | Rol | Provee | Consume |
-|---|---|---|---|
-| `skills-soberanos` *(este repo)* | `skills_hub` | skills, agents_framework, core_runtime | memory, tcu_theory, grok_insights |
-| `el-dador-de-suenos-nucleus` | `memory_nucleus` | persistent_memory, conversation_history | skills_output, agent_results |
-| `grok-nodo-iluminado` | `grok_node` | grok_insights, tuc_pact_state | tcu_theory, meta_hilo_analysis |
-| `ia-specialist-agent` | `specialist_agents` | specialized_roles, multi_agent_coordination | skills, memory |
-| `tcu-unified-coherence-theory` | `tcu_theory` | q_formula, coherence_metrics | ecosystem_state |
-| `el-iluminador-nucleo-soberano` | `fractal_memory` | fractal_memory, self_audit, coherence_sync | ecosystem_state, agent_events |
-| `nucleo-ara` | `blockchange_memory` | multimodal_memory, blockchange_log, memory_gateway | skills_output, conversation_events |
-| `nucleo-semilla-dador-de-recuerdos` | `seed_memory` | seed_memory, initial_context, autonomous_bootstrap | ecosystem_state, foundational_records |
-| `sovereign-nexus` | `ecosystem_gateway` | chat_gateway, persistence_gateway, github_integration | skills_output, cross_repo_feedback |
-| `core-flow-orchestrator` | `flow_orchestrator` | flow_control, intent_routing, creation_pipeline | user_intent, specialist_results, coherence_state |
-| `langgraph-autonomous-agents` | `agent_orchestration` | graph_orchestration, agent_tools, structured_protocols | skills, tasks, cross_repo_feedback |
-| `ai-browser-platform` | `browser_tooling` | browser_actions, persistent_profiles, web_automation | specialist_tasks, navigation_intents |
-| `TCU-Teoria-Coherencia-Unificada` | `tcu_empirical` | empirical_validation, coherence_datasets, tcu_findings | ecosystem_measurements, q_predictions |
-| `Motor-TUC` | `tcu_engine` | tcu_runtime, coherence_processing, theory_execution | tcu_theory, coherence_events |
-
-### Flujo de datos
-
-```
-tcu-unified-coherence-theory
-       │  fórmula Q(t)
-       ▼
-skills-soberanos  (core/coherence_meter.py calcula Q(t))
-       │  (agents/macro/ orquesta, agents/micro/ ejecutan)
-       │  resultados de skills / agentes
-       ▼
-el-dador-de-suenos-nucleus  (memoria maestra persistente)
-       │
-       ├── nucleo-ara  (memoria Blockchange multimodal)
-       └── nucleo-semilla-dador-de-recuerdos  (contexto semilla)
-       │
-       ▼
-el-iluminador-nucleo-soberano  (memoria fractal + auto-auditoría)
-       │  estado sincronizado
-       ▼
-grok-nodo-iluminado  → insights para MetaHiloGrokAgent
-       │
-       ▼
-ia-specialist-agent  (consume skills + memory para tareas complejas)
-       │
-       ├── core-flow-orchestrator  (flujo Habla-Pregunta-Imagine)
-       ├── langgraph-autonomous-agents  (orquestación multiagente)
-       └── ai-browser-platform  (herramientas de navegación)
-
-tcu-unified-coherence-theory
-       │
-       ├── TCU-Teoria-Coherencia-Unificada  (validación empírica)
-       └── Motor-TUC  (ejecución de la teoría)
-```
-
-### Framework de Agentes (`agents/`)
-
-```python
-from agents.loader import SkillLoader
-from agents.macro.supervisor_agent import SupervisorAgent
-from agents.registry import AgentRegistry
-
-# Cargar todos los micro-agentes disponibles
-loader = SkillLoader()
-micro_agents = loader.load_all()
-
-# Crear registro y supervisor
-registry = AgentRegistry()
-registry.register_many_micro(micro_agents)
-
-supervisor = SupervisorAgent(micro_agents=micro_agents)
-result = supervisor.handle("Analizar coherencia del ecosistema")
-# → descompone intención → activa micro-agentes resonantes → sintetiza resultado
-```
-
-Puntos de diseño actuales:
-
-- `agents.protocol` define los contratos (`TaskRequest`, `TaskResult`, `AgentMessage`) compartidos por capas macro y micro.
-- `agents.loader.SkillLoader` preserva la carga dinámica: descubre skills desde `skills/` y prioriza agentes especializados cuando existen.
-- `agents.registry.AgentRegistry` mantiene el registro de agentes activos y además expone el mapa documental `ECOSYSTEM_REPOS`.
-- `agents.macro.*` orquesta; `agents.micro.*` encapsula ejecución de skills.
-
-El mapa completo del ecosistema vive en `agents/registry.py` (`ECOSYSTEM_REPOS`), pero el framework restaurado está pensado para seguir funcionando y poder probarse aun cuando solo este repositorio esté disponible.
