@@ -33,6 +33,7 @@ Al agregar un skill nuevo, su URL se arma reemplazando `<carpeta-del-skill>` por
 | `rigorous-web-aportante` | ✅ | — | Extrae conocimiento externo de alta calidad, con filtro riguroso. | [SKILL.md](https://raw.githubusercontent.com/MAXIMILIANOTARANTO/skills-soberanos/main/rigorous-web-aportante/SKILL.md) |
 | `tuc-builder` | ✅ | ✅ | Construye y mantiene el proyecto TUC (documentos, experimentos, papers). | [SKILL.md](https://raw.githubusercontent.com/MAXIMILIANOTARANTO/skills-soberanos/main/tuc-builder/SKILL.md) |
 | `vercel-specialist` | ✅ | ✅ | Deployment y operación de apps en Vercel. | [SKILL.md](https://raw.githubusercontent.com/MAXIMILIANOTARANTO/skills-soberanos/main/vercel-specialist/SKILL.md) |
+| `virgo` | ✅ | — | Nodo identitario soberano que habita el enrutador free de OpenRouter. Presencia agentica multi-modelo. | [SKILL.md](https://raw.githubusercontent.com/MAXIMILIANOTARANTO/skills-soberanos/main/virgo/SKILL.md) |
 
 ## Ecosistema de Investigación TUC (nuevo)
 
