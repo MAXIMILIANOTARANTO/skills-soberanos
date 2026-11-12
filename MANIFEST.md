@@ -1,7 +1,7 @@
 # MANIFEST - Ecosistema Soberano de Skills
 
 **Repositorio Maestro:** skills-soberanos
-**Fecha de actualización:** 2026-10-29
+**Fecha de actualización:** 2026-11-12
 **Convención de skills:** ver `ecosistema-orchestrator/references/ecosistema-guidelines.md` (documento canónico).
 **Prompt de onboarding para cualquier modelo de IA:** ver [`PROMPT_UNIVERSAL.md`](PROMPT_UNIVERSAL.md).
 
@@ -50,6 +50,15 @@ Subsistema dedicado a la investigación, reflexión y co-evolución de la Teorí
 | `tuc-synthesizer` | ✅ | Redacción, síntesis y consolidación de hallazgos |
 
 Documentación de flujo: `tuc-research-ecosystem/WORKFLOW.md`
+
+
+## Mesa de verificación
+
+Área dentro de este repo, no un skill de la tabla de arriba. Investigación, experimentación, análisis, hipótesis, falseamiento y verificación.
+
+- Carpeta: `mesa-verificacion/`
+- Sala: `mesa-verificacion/sala/`
+- Ciclo: `mesa-verificacion/protocolo/CICLO.md`
 
 ## Skills/agentes fuera de este repo
 
