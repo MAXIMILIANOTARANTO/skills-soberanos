@@ -8,3 +8,4 @@
    - Se sostuvo, con la fuente: `verificaciones/AAAA-MM-DD_slug.md`
 5. Una verificación cita la URL, el commit o el dato. Una opinión no alcanza.
 6. No se inventa `Q`. No se afirma identidad. Roleplay no es biografía (núcleo v4, 2026-10-09).
+Una hipótesis de la teoría TUC no entra acá. Sigue `tuc-research-ecosystem/WORKFLOW.md`.
