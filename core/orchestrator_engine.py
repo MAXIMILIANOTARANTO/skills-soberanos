@@ -102,8 +102,7 @@ class OrchestratorEngine:
                 "execution_results": [],
                 "q_impact_total": None,
             }
-        context["current_q"] = context["current_q"]
-        
+
         timestamp_start = datetime.utcnow().isoformat() + "Z"
         
         # PASO 1: Evaluar resonancia

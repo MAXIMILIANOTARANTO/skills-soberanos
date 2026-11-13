@@ -98,3 +98,20 @@ def test_analyze_skills_health_reports_all_skills():
     assert health["total_skills"] == 1
     assert health["skills_detail"][0]["name"] == "high-resonance-skill"
     assert health["skills_detail"][0]["executions"] == 1
+
+
+def test_route_and_execute_without_q_does_not_run_skills():
+    skill = HighResonanceSkill()
+    engine = OrchestratorEngine(skills=[skill])
+
+    response = engine.route_and_execute(
+        "Analizar estado de coherencia del ecosistema",
+        dry_run=True,
+    )
+
+    assert response["hueco"] == "Q ausente. No se poda ni se ejecuta."
+    assert response["activated_skills"] == []
+    assert response["execution_results"] == []
+    assert response["q_impact_total"] is None
+    assert skill.execution_count == 0
+    assert any(row["skill"] == "high-resonance-skill" for row in response["resonance_scores"])
