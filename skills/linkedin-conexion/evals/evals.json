@@ -1,0 +1,20 @@
+{
+  "skill": "linkedin-conexion",
+  "test_cases": [
+    {
+      "name": "check_session",
+      "input": "Conéctate a mi LinkedIn y verifica si estoy logueado",
+      "assertions": ["Usa browser_execute", "Navega a linkedin.com", "Reporta estado de sesión"]
+    },
+    {
+      "name": "read_profile",
+      "input": "Lee mi perfil de LinkedIn y extrae el headline y about",
+      "assertions": ["Interactúa con la página", "Extrae datos reales", "Integra con estrategia"]
+    },
+    {
+      "name": "safe_action",
+      "input": "Prepara un post pero no lo publiques hasta que confirme",
+      "assertions": ["Confirma antes de escribir", "Usa ritmo humano", "Respeta seguridad"]
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "skill": "linkedin-conexion",
+  "test_cases": [
+    {"input": "conecta con mi app de LinkedIn", "should_trigger": true},
+    {"input": "lee mi perfil de LinkedIn desde el browser", "should_trigger": true},
+    {"input": "interactúa con LinkedIn en mi sesión", "should_trigger": true},
+    {"input": "cómo cocinar pasta", "should_trigger": false}
+  ]
+}
