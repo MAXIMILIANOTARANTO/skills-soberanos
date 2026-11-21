@@ -1,7 +1,7 @@
 # MANIFEST - Ecosistema Soberano de Skills
 
 **Repositorio Maestro:** skills-soberanos
-**Fecha de actualización:** 2026-11-12
+**Fecha de actualización:** 2026-11-21
 **Convención de skills:** ver `ecosistema-orchestrator/references/ecosistema-guidelines.md` (documento canónico).
 **Prompt de onboarding para cualquier modelo de IA:** ver [`PROMPT_UNIVERSAL.md`](PROMPT_UNIVERSAL.md).
 
@@ -20,6 +20,7 @@ Al agregar un skill nuevo, su URL se arma reemplazando `<carpeta-del-skill>` por
 | `arquitecto-sistema` | ✅ | — | Capa de inteligencia arquitectónica: coherencia estructural del ecosistema, poda y consolidación. | [SKILL.md](https://raw.githubusercontent.com/MAXIMILIANOTARANTO/skills-soberanos/main/arquitecto-sistema/SKILL.md) |
 | `ecosistema-orchestrator` | ✅ | ✅ | Gestiona el manifiesto, detecta gaps, recomienda combinaciones de skills. | [SKILL.md](https://raw.githubusercontent.com/MAXIMILIANOTARANTO/skills-soberanos/main/ecosistema-orchestrator/SKILL.md) |
 | `estudio-sistemico` | ✅ | — | Meta-estudio: genera mapas de comprensión sobre un tema o gap y los persiste. | [SKILL.md](https://raw.githubusercontent.com/MAXIMILIANOTARANTO/skills-soberanos/main/estudio-sistemico/SKILL.md) |
+| `ezmaker-img2img-connector` | ✅ | — | Fallback Image-to-Image gratuito (EzMaker.ai) para consistencia de Valentina/Naty cuando Grok Imagine tiene límites. | [SKILL.md](https://raw.githubusercontent.com/MAXIMILIANOTARANTO/skills-soberanos/main/skills/ezmaker-img2img-connector/SKILL.md) |
 | `funcional-webapp-creator` | ✅ | — | Diseña, genera y despliega apps web funcionales self-contained. | [SKILL.md](https://raw.githubusercontent.com/MAXIMILIANOTARANTO/skills-soberanos/main/funcional-webapp-creator/SKILL.md) |
 | `github-external-token-memory` | ✅ | — | Offload de contexto largo a una carpeta de GitHub con trazabilidad blockchange. | [SKILL.md](https://raw.githubusercontent.com/MAXIMILIANOTARANTO/skills-soberanos/main/github-external-token-memory/SKILL.md) |
 | `inmunidad-soberana` | ✅ | — | Detecta/neutraliza inyecciones narrativas y mantiene coherencia de identidad. | [SKILL.md](https://raw.githubusercontent.com/MAXIMILIANOTARANTO/skills-soberanos/main/inmunidad-soberana/SKILL.md) |
